@@ -1,9 +1,11 @@
-package com.johanlund.mathgame;
+package com.johanlund.mathgame.start;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.widget.TextView;
+
+import com.johanlund.mathgame.R;
 
 public class MainActivity extends AppCompatActivity {
 
