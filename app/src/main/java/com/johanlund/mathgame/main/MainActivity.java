@@ -5,10 +5,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
-import android.widget.TextView;
 
 import com.johanlund.mathgame.R;
-import com.johanlund.mathgame.questionanswer.QuestionAnswerFragment;
+import com.johanlund.mathgame.questionanswer.AnswerQuestionFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Fragment fragment = new QuestionAnswerFragment();
+        Fragment fragment = new AnswerQuestionFragment();
         FragmentManager transaction = getSupportFragmentManager();
         transaction.beginTransaction()
                 .add(R.id.main_container, fragment, "QuestionAnswerFragment")
