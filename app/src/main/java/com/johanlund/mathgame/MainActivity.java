@@ -1,9 +1,8 @@
-package com.example.mathgame;
+package com.johanlund.mathgame;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.view.ViewGroup;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {

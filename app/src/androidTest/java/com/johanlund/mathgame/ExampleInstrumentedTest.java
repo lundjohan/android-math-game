@@ -1,4 +1,4 @@
-package com.example.mathgame;
+package com.johanlund.mathgame;
 
 import android.content.Context;
 
