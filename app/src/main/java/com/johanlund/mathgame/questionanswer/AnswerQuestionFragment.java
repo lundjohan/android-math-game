@@ -29,7 +29,10 @@ public class AnswerQuestionFragment extends Fragment implements AnswerQuestionVi
     @Override
     public void checkAnswer() {
         QuestionModel q = viewMvc.retrieveQuestionFromView();
-        int answer = viewMvc.retrieveAnswer();
+        Integer answer = viewMvc.retrieveAnswer();
+        if (answer == null){
+            return;
+        }
         Integer realAnswer = null;
         switch (q.getOperator()){
             case '+':

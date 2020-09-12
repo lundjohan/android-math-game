@@ -7,7 +7,7 @@ public interface AnswerQuestionViewMvc extends ViewMvc {
     void doCorrectGraphics();
     void doIncorrectGraphics();
     QuestionModel retrieveQuestionFromView();
-    int retrieveAnswer();
+    Integer retrieveAnswer();
 
 
     interface Listener extends ViewMvc.Listener{

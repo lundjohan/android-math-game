@@ -30,8 +30,12 @@ public class AnswerQuestionViewMvcImpl implements AnswerQuestionViewMvc{
     }
 
     //must control for correct input
-    public int retrieveAnswer(){
+    public Integer retrieveAnswer(){
         String str = answerBox.getText().toString();
+        if (str.isEmpty()){
+            answerBox.setError("Cannot be empty!");
+            return null;
+        }
         return Integer.valueOf(str);
     }
 
