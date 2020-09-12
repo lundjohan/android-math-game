@@ -16,8 +16,7 @@ public class AnswerQuestionViewMvcImpl implements AnswerQuestionViewMvc{
     private EditText answerBox;
     private AnswerQuestionViewMvc.Listener listener;
 
-    public AnswerQuestionViewMvcImpl(LayoutInflater inflater, ViewGroup container, AnswerQuestionViewMvc.Listener l) {
-        listener = l;
+    public AnswerQuestionViewMvcImpl(LayoutInflater inflater, ViewGroup container) {
         view = inflater.inflate(R.layout.fragment_question_answer, container, false);
         questionView = view.findViewById(R.id.mathQuestion);
         Button sendBtn = view.findViewById(R.id.sendBtn);
@@ -37,6 +36,16 @@ public class AnswerQuestionViewMvcImpl implements AnswerQuestionViewMvc{
             return null;
         }
         return Integer.valueOf(str);
+    }
+
+    @Override
+    public void setListener(Listener l) {
+        listener = l;
+    }
+
+    @Override
+    public void unregisterListener() {
+        listener = null;
     }
 
     @Override
@@ -67,11 +76,5 @@ public class AnswerQuestionViewMvcImpl implements AnswerQuestionViewMvc{
     @Override
     public View getRootView() {
         return view;
-    }
-
-    @Override
-    public void onDestroy() {
-        listener = null;
-        view = null;
     }
 }

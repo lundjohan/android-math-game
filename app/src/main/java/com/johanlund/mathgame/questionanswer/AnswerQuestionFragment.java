@@ -19,11 +19,23 @@ public class AnswerQuestionFragment extends Fragment implements AnswerQuestionVi
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        viewMvc = new AnswerQuestionViewMvcImpl(inflater, container, this);
+        viewMvc = new AnswerQuestionViewMvcImpl(inflater, container);
         //model will be created higher in hierarchy in future, this is temp fix
         QuestionModel q = new QuestionModel(4,6,'+');
         viewMvc.bindQuestionToView(q);
         return viewMvc.getRootView();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        viewMvc.setListener(this);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        viewMvc.unregisterListener();
     }
 
     @Override

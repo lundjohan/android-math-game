@@ -9,6 +9,9 @@ public interface AnswerQuestionViewMvc extends ViewMvc {
     QuestionModel retrieveQuestionFromView();
     Integer retrieveAnswer();
 
+    void setListener(AnswerQuestionViewMvc.Listener l);
+    void unregisterListener();
+
 
     interface Listener extends ViewMvc.Listener{
         public void checkAnswer();
