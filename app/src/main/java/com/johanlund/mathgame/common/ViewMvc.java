@@ -3,5 +3,11 @@ package com.johanlund.mathgame.common;
 import android.view.View;
 
 public interface ViewMvc {
-    public View getRootView();
+    View getRootView();
+    void onDestroy();
+    interface Listener {
+    }
+
+
+
 }

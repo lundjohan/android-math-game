@@ -1,34 +1,73 @@
 package com.johanlund.mathgame.questionanswer;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.johanlund.mathgame.R;
 
 public class AnswerQuestionViewMvcImpl implements AnswerQuestionViewMvc{
-    private final View view;
+    private View view;
+    private TextView questionView;
+    private EditText answerBox;
+    private AnswerQuestionViewMvc.Listener listener;
 
-    public AnswerQuestionViewMvcImpl(LayoutInflater inflater, ViewGroup container) {
-        this.view = inflater.inflate(R.layout.fragment_question_answer, container, false);
+    public AnswerQuestionViewMvcImpl(LayoutInflater inflater, ViewGroup container, AnswerQuestionViewMvc.Listener l) {
+        listener = l;
+        view = inflater.inflate(R.layout.fragment_question_answer, container, false);
+        questionView = view.findViewById(R.id.mathQuestion);
+        Button sendBtn = view.findViewById(R.id.sendBtn);
+        answerBox = view.findViewById(R.id.userAnswerInput);
+        sendBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                listener.checkAnswer();
+            }
+        });
+    }
+
+    //must control for correct input
+    public int retrieveAnswer(){
+        String str = answerBox.getText().toString();
+        return Integer.valueOf(str);
     }
 
     @Override
     public void bindQuestionToView(QuestionModel qm) {
-        TextView question = view.findViewById(R.id.mathQuestion);
-        question.setText(qm.getLeft() + " " + qm.getOperator() + " " + qm.getRight() + " =");
+        questionView.setText(qm.getLeft() + " " + qm.getOperator() + " " + qm.getRight() + " =");
     }
 
     @Override
     public QuestionModel retrieveQuestionFromView() {
-        //create and return QuestionModel obj from UI
+        String [] parts = questionView.getText().toString().split(" ");
+        if (parts.length == 0){
+            return null;
+        }
+        QuestionModel qm = new QuestionModel(Integer.valueOf(parts[0]),Integer.valueOf(parts[2]), parts[1].charAt(0));
+        return qm;
+    }
 
-        return null;
+    @Override
+    public void doCorrectGraphics() {
+        view.setBackgroundColor(Color.GREEN);
+    }
+
+    @Override
+    public void doIncorrectGraphics() {
+        view.setBackgroundColor(Color.RED);
     }
 
     @Override
     public View getRootView() {
         return view;
+    }
+
+    @Override
+    public void onDestroy() {
+        listener = null;
+        view = null;
     }
 }

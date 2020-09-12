@@ -6,11 +6,11 @@
     tools:context="com.johanlund.mathgame.questionanswer.AnswerQuestionFragment">
 
     <EditText
-        android:id="@+id/editTextNumberSigned"
-        android:layout_width="146dp"
-        android:layout_height="35dp"
+        android:id="@+id/userAnswerInput"
         android:ems="10"
-        android:inputType="numberSigned"
+        android:inputType="number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/sendBtn"
         app:layout_constraintHorizontal_bias="0.592"
@@ -24,11 +24,11 @@
         android:layout_height="wrap_content"
         android:text="Answer:"
         android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@+id/editTextNumberSigned"
-        app:layout_constraintEnd_toStartOf="@+id/editTextNumberSigned"
+        app:layout_constraintBottom_toBottomOf="@+id/userAnswerInput"
+        app:layout_constraintEnd_toStartOf="@+id/userAnswerInput"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/editTextNumberSigned"
+        app:layout_constraintTop_toTopOf="@+id/userAnswerInput"
         app:layout_constraintVertical_bias="0.438" />
 
     <TextView
@@ -38,7 +38,7 @@
         android:fontFamily="sans-serif-condensed"
         android:text="TextView"
         android:textSize="36sp"
-        app:layout_constraintBottom_toTopOf="@+id/editTextNumberSigned"
+        app:layout_constraintBottom_toTopOf="@+id/userAnswerInput"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -50,9 +50,9 @@
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:text="SEND"
-        app:layout_constraintBottom_toBottomOf="@+id/editTextNumberSigned"
+        app:layout_constraintBottom_toBottomOf="@+id/userAnswerInput"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/editTextNumberSigned"
+        app:layout_constraintTop_toTopOf="@+id/userAnswerInput"
         app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
