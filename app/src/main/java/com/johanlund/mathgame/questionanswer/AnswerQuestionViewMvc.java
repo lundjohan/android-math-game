@@ -1,5 +1,6 @@
 package com.johanlund.mathgame.questionanswer;
 
+import com.johanlund.mathgame.common.QuestionModel;
 import com.johanlund.mathgame.common.ViewMvc;
 
 public interface AnswerQuestionViewMvc extends ViewMvc {

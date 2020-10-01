@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.johanlund.mathgame.R;
+import com.johanlund.mathgame.common.QuestionModel;
 
 public class AnswerQuestionViewMvcImpl implements AnswerQuestionViewMvc{
     private View view;

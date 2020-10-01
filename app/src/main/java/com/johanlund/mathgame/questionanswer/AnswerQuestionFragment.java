@@ -8,6 +8,10 @@ import android.view.ViewGroup;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.johanlund.mathgame.common.QuestionModel;
+import com.johanlund.mathgame.questionsProducer.QuestionsProducer;
+import com.johanlund.mathgame.questionsProducer.QuestionsProducerImpl;
+
 public class AnswerQuestionFragment extends Fragment implements AnswerQuestionViewMvc.Listener{
     private AnswerQuestionViewMvc viewMvc;
 
@@ -21,7 +25,12 @@ public class AnswerQuestionFragment extends Fragment implements AnswerQuestionVi
                              Bundle savedInstanceState) {
         viewMvc = new AnswerQuestionViewMvcImpl(inflater, container);
         //model will be created higher in hierarchy in future, this is temp fix
-        QuestionModel q = new QuestionModel(4,6,'+');
+        //QuestionModel q = new QuestionModel(4,6,'+');
+
+        //testing
+        QuestionsProducer qp = new QuestionsProducerImpl();
+        QuestionModel q = qp.retrieveLevel(1,3).getQuestions()[0];
+
         viewMvc.bindQuestionToView(q);
         return viewMvc.getRootView();
     }

@@ -1,4 +1,4 @@
-package com.johanlund.mathgame.questionanswer;
+package com.johanlund.mathgame.common;
 
 //immutable class
 public class QuestionModel {
