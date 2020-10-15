@@ -1,8 +1,10 @@
 package com.johanlund.mathgame.questionsDatabase;
 
+import com.johanlund.mathgame.main.AssetManagerModule;
+
 import dagger.Component;
 
-@Component(modules = JSONDatabaseModule.class)
+@Component(modules = {AssetManagerModule.class, JSONDatabaseModule.class})
 public interface LevelDatabaseFactory {
-    Database database();
+    JSONDatabase database();
 }
