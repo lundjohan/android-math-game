@@ -9,10 +9,10 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.johanlund.mathgame.common.QuestionModel;
-import com.johanlund.mathgame.questionsProducer.QuestionsProducer;
-import com.johanlund.mathgame.questionsProducer.QuestionsProducerImpl;
 
-public class AnswerQuestionFragment extends Fragment implements AnswerQuestionViewMvc.Listener{
+import static com.johanlund.mathgame.common.Constants.QUESTION_MODEL;
+
+public class OneQuestionFragment extends Fragment implements AnswerQuestionViewMvc.Listener {
     private AnswerQuestionViewMvc viewMvc;
 
     @Override
@@ -23,15 +23,9 @@ public class AnswerQuestionFragment extends Fragment implements AnswerQuestionVi
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        QuestionModel qm = (QuestionModel) getArguments().getSerializable(QUESTION_MODEL);
         viewMvc = new AnswerQuestionViewMvcImpl(inflater, container);
-        //model will be created higher in hierarchy in future, this is temp fix
-        //QuestionModel q = new QuestionModel(4,6,'+');
-
-        //testing
-        QuestionsProducer qp = new QuestionsProducerImpl();
-        QuestionModel q = qp.retrieveLevel(1,3).getQuestions()[0];
-
-        viewMvc.bindQuestionToView(q);
+        viewMvc.bindQuestionToView(qm);
         return viewMvc.getRootView();
     }
 
@@ -51,11 +45,11 @@ public class AnswerQuestionFragment extends Fragment implements AnswerQuestionVi
     public void checkAnswer() {
         QuestionModel q = viewMvc.retrieveQuestionFromView();
         Integer answer = viewMvc.retrieveAnswer();
-        if (answer == null){
+        if (answer == null) {
             return;
         }
         Integer realAnswer = null;
-        switch (q.getOperator()){
+        switch (q.getOperator()) {
             case '+':
                 realAnswer = q.getLeft() + q.getRight();
                 break;
@@ -71,11 +65,10 @@ public class AnswerQuestionFragment extends Fragment implements AnswerQuestionVi
 
         }
 
-        if (realAnswer.intValue() == answer){
+        if (realAnswer.intValue() == answer) {
             viewMvc.doCorrectGraphics();
-        }
-        else {
+        } else {
             viewMvc.doIncorrectGraphics();
         }
-        }
+    }
 }

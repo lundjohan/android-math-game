@@ -1,6 +1,8 @@
 package com.johanlund.mathgame.common;
 
-public class Level {
+import java.io.Serializable;
+
+public class Level implements Serializable {
     private QuestionModel [] questions;
     private int timeInSec;
 
