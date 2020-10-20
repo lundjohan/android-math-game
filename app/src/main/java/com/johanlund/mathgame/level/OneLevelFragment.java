@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.johanlund.mathgame.common.Level;
@@ -15,6 +14,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static com.johanlund.mathgame.common.Constants.LEVEL;
+import static com.johanlund.mathgame.common.Constants.LEVEL_TITLE;
 
 public class OneLevelFragment extends Fragment {
     private OneLevelViewMvc viewMvc;
@@ -28,10 +28,16 @@ public class OneLevelFragment extends Fragment {
 
         Bundle args = getArguments();
         if (args != null) {
+            //Level
             Level level = (Level) args.getSerializable(LEVEL);
             List<QuestionModel> qms = Arrays.asList(level.getQuestions());
             QuestionAdapter adapter = new QuestionAdapter(this, qms);
             viewMvc.bindPagerToView(adapter);
+
+            //Level title
+            String str = args.getString(LEVEL_TITLE);
+            viewMvc.bindLevelTitleToView(str);
+
         }
         return viewMvc.getRootView();
     }

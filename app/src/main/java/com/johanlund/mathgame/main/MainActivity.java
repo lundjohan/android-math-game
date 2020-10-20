@@ -13,6 +13,7 @@ import com.johanlund.mathgame.questionsProducer.QuestionsProducer;
 import com.johanlund.mathgame.questionsProducer.QuestionsProducerImpl;
 
 import static com.johanlund.mathgame.common.Constants.LEVEL;
+import static com.johanlund.mathgame.common.Constants.LEVEL_TITLE;
 
 public class MainActivity extends AppCompatActivity implements OneLevelFragmentListener {
     private int currentLevel = 1;
@@ -37,8 +38,7 @@ public class MainActivity extends AppCompatActivity implements OneLevelFragmentL
         Level level = qp.retrieveLevel(currentLevel, 3);
         Bundle args = new Bundle();
         args.putSerializable(LEVEL, level);
-        //testing
-        args.putInt("TEST", 1);
+        args.putString(LEVEL_TITLE, "LEVEL "+currentLevel);
 
         OneLevelFragment fragment = new OneLevelFragment();
         fragment.setArguments(args);

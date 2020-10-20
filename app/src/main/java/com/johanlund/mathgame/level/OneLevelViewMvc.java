@@ -6,4 +6,5 @@ import com.johanlund.mathgame.common.ViewMvc;
 
 public interface OneLevelViewMvc extends ViewMvc {
     void bindPagerToView(QuestionAdapter qa);
+    void bindLevelTitleToView(String str);
 }
