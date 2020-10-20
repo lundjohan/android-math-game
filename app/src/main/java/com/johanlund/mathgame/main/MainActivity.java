@@ -7,8 +7,8 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.johanlund.mathgame.R;
 import com.johanlund.mathgame.common.Level;
-import com.johanlund.mathgame.questionanswer.OneLevelFragment;
-import com.johanlund.mathgame.questionanswer.OneLevelFragmentListener;
+import com.johanlund.mathgame.level.OneLevelFragment;
+import com.johanlund.mathgame.level.OneLevelFragmentListener;
 import com.johanlund.mathgame.questionsProducer.QuestionsProducer;
 import com.johanlund.mathgame.questionsProducer.QuestionsProducerImpl;
 

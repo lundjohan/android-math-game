@@ -12,7 +12,7 @@ import com.johanlund.mathgame.common.QuestionModel;
 
 import static com.johanlund.mathgame.common.Constants.QUESTION_MODEL;
 
-public class OneQuestionFragment extends Fragment implements AnswerQuestionViewMvc.Listener {
+public class AnswerQuestionFragment extends Fragment implements AnswerQuestionViewMvc.Listener {
     private AnswerQuestionViewMvc viewMvc;
 
     @Override

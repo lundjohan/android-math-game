@@ -1,4 +1,4 @@
-package com.johanlund.mathgame.questionanswer;
+package com.johanlund.mathgame.level;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,6 +14,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.johanlund.mathgame.R;
 import com.johanlund.mathgame.common.Level;
 import com.johanlund.mathgame.common.QuestionModel;
+import com.johanlund.mathgame.questionanswer.AnswerQuestionFragment;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -67,7 +68,7 @@ public class OneLevelFragment extends Fragment {
         @Override
         public Fragment createFragment(int position) {
             // Return a NEW fragment instance in createFragment(int)
-            Fragment fragment = new OneQuestionFragment();
+            Fragment fragment = new AnswerQuestionFragment();
             Bundle args = new Bundle();
             args.putSerializable(QUESTION_MODEL, qs.get(position));
             fragment.setArguments(args);
