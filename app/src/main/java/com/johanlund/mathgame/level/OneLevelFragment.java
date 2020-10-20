@@ -25,13 +25,7 @@ public class OneLevelFragment extends Fragment {
                              Bundle savedInstanceState) {
         callback = (OneLevelFragmentListener) getActivity();
         viewMvc = new OneLevelViewMvcImpl(inflater, container);
-        return viewMvc.getRootView();
-    }
 
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-
-        //is it really correct to retrieve  level here? Check lifecycles!
         Bundle args = getArguments();
         if (args != null) {
             Level level = (Level) args.getSerializable(LEVEL);
@@ -39,6 +33,7 @@ public class OneLevelFragment extends Fragment {
             QuestionAdapter adapter = new QuestionAdapter(this, qms);
             viewMvc.bindPagerToView(adapter);
         }
+        return viewMvc.getRootView();
     }
 }
 
