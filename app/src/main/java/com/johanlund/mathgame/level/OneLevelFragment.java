@@ -27,7 +27,7 @@ public class OneLevelFragment extends Fragment {
     private OneLevelFragmentListener callback;
     QuestionAdapter questionAdapter;
     ViewPager2 viewPager;
-    List<QuestionModel> qs = new ArrayList<>();
+    List<QuestionModel> qms = new ArrayList<>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -35,7 +35,7 @@ public class OneLevelFragment extends Fragment {
         Bundle args = getArguments();
         if (args != null) {
             Level level = (Level) args.getSerializable(LEVEL);
-            qs = Arrays.asList(level.getQuestions());
+            qms = Arrays.asList(level.getQuestions());
         }
     }
 
@@ -70,14 +70,14 @@ public class OneLevelFragment extends Fragment {
             // Return a NEW fragment instance in createFragment(int)
             Fragment fragment = new AnswerQuestionFragment();
             Bundle args = new Bundle();
-            args.putSerializable(QUESTION_MODEL, qs.get(position));
+            args.putSerializable(QUESTION_MODEL, qms.get(position));
             fragment.setArguments(args);
             return fragment;
         }
 
         @Override
         public int getItemCount() {
-            return qs.size();
+            return qms.size();
         }
     }
 }
