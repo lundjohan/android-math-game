@@ -7,7 +7,8 @@ public class QuestionModel implements Serializable {
     private final int left;
     private final int right;
     private final char operator;
-    public QuestionModel(int aLeft, int aRight, char aOperator){
+
+    public QuestionModel(int aLeft, int aRight, char aOperator) {
         left = aLeft;
         right = aRight;
         operator = aOperator;

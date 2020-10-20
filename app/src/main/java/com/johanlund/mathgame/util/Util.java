@@ -5,11 +5,10 @@ import com.johanlund.mathgame.common.QuestionModel;
 public class Util {
 
     /**
-     *
      * @param s"222+3" or "99/33"
      * @return QuestionModel(left = 222, right = 3, operator = +)
      */
-    public static QuestionModel strToQuestionModel(String s){
+    public static QuestionModel strToQuestionModel(String s) {
         //lookbehind etc to include delimeter in result:
         //  https://stackoverflow.com/questions/2206378/how-to-split-a-string-but-also-keep-the-delimiters
         //bit hacky, but it works...

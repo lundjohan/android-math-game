@@ -1,7 +1,7 @@
 package com.johanlund.mathgame.questionsDatabase;
 
-import dagger.Module;
 import dagger.Binds;
+import dagger.Module;
 
 @Module
 public abstract class JSONDatabaseModule {

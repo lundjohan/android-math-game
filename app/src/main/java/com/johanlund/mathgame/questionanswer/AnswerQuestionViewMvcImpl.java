@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.johanlund.mathgame.R;
 import com.johanlund.mathgame.common.QuestionModel;
 
-public class AnswerQuestionViewMvcImpl implements AnswerQuestionViewMvc{
+public class AnswerQuestionViewMvcImpl implements AnswerQuestionViewMvc {
     private View view;
     private TextView questionView;
     private EditText answerBox;
@@ -30,9 +30,9 @@ public class AnswerQuestionViewMvcImpl implements AnswerQuestionViewMvc{
     }
 
     //must control for correct input
-    public Integer retrieveAnswer(){
+    public Integer retrieveAnswer() {
         String str = answerBox.getText().toString();
-        if (str.isEmpty()){
+        if (str.isEmpty()) {
             answerBox.setError("Cannot be empty!");
             return null;
         }
@@ -56,11 +56,11 @@ public class AnswerQuestionViewMvcImpl implements AnswerQuestionViewMvc{
 
     @Override
     public QuestionModel retrieveQuestionFromView() {
-        String [] parts = questionView.getText().toString().split(" ");
-        if (parts.length == 0){
+        String[] parts = questionView.getText().toString().split(" ");
+        if (parts.length == 0) {
             return null;
         }
-        QuestionModel qm = new QuestionModel(Integer.valueOf(parts[0]),Integer.valueOf(parts[2]), parts[1].charAt(0));
+        QuestionModel qm = new QuestionModel(Integer.valueOf(parts[0]), Integer.valueOf(parts[2]), parts[1].charAt(0));
         return qm;
     }
 

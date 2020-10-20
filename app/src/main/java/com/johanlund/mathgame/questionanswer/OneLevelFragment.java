@@ -46,6 +46,7 @@ public class OneLevelFragment extends Fragment {
 
         return inflater.inflate(R.layout.fragment_one_level, container, false);
     }
+
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         questionAdapter = new QuestionAdapter(this);

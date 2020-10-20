@@ -18,8 +18,8 @@ public class QuestionsProducerImpl implements QuestionsProducer {
 
         //reduce amount of questions in Level
         int notHigherThanThis = tmp.getQuestions().length <
-                nrOfQuestions?tmp.getQuestions().length :nrOfQuestions ;
+                nrOfQuestions ? tmp.getQuestions().length : nrOfQuestions;
         QuestionModel[] questions = Arrays.copyOfRange(tmp.getQuestions(), 0, notHigherThanThis);
-        return new Level(questions,tmp.getTimeInSec());
+        return new Level(questions, tmp.getTimeInSec());
     }
 }
