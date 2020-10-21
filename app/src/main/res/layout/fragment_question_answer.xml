@@ -9,7 +9,7 @@
         android:id="@+id/userAnswerInput"
         android:layout_width="120dp"
         android:layout_height="63dp"
-        android:inputType="number"
+        android:inputType="numberSigned"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/sendBtn"
