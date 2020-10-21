@@ -1,5 +1,6 @@
 package com.johanlund.mathgame.questionanswer;
 
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +23,7 @@ public class AnswerQuestionViewMvcImpl implements AnswerQuestionViewMvc {
         questionView = view.findViewById(R.id.mathQuestion);
         Button sendBtn = view.findViewById(R.id.sendBtn);
         answerBox = view.findViewById(R.id.userAnswerInput);
+        answerBox.setRawInputType(Configuration.KEYBOARD_12KEY);
         sendBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 listener.checkAnswer();
