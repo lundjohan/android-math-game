@@ -46,9 +46,9 @@ public class MainActivity extends AppCompatActivity implements OneLevelFragmentL
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
         if (beginningFragment) {
-            transaction.add(container, fragment, "qwerty");
+            transaction.add(container, fragment);
         } else {
-            transaction.replace(container, fragment, "qwerty");
+            transaction.replace(container, fragment);
         }
         transaction.commit();
     }
