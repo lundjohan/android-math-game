@@ -1,6 +1,7 @@
 package com.johanlund.mathgame.questionanswer;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,20 +11,27 @@ import androidx.fragment.app.Fragment;
 
 import com.johanlund.mathgame.common.QuestionModel;
 
+import static com.johanlund.mathgame.common.Constants.POSITION_IN_ADAPTER;
 import static com.johanlund.mathgame.common.Constants.QUESTION_MODEL;
 
 public class AnswerQuestionFragment extends Fragment implements AnswerQuestionViewMvc.Listener {
     private AnswerQuestionViewMvc viewMvc;
-
+    private Listener callback;
+    QuestionModel qm;
+    String TAG = this.getClass().getName();
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        callback = (Listener) getParentFragment();
+        Bundle args = getArguments();
+        qm = (QuestionModel) args.getSerializable(QUESTION_MODEL);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        QuestionModel qm = (QuestionModel) getArguments().getSerializable(QUESTION_MODEL);
+
+
         viewMvc = new AnswerQuestionViewMvcImpl(inflater, container);
         viewMvc.bindQuestionToView(qm);
         return viewMvc.getRootView();
@@ -67,8 +75,13 @@ public class AnswerQuestionFragment extends Fragment implements AnswerQuestionVi
 
         if (realAnswer.intValue() == answer) {
             viewMvc.doCorrectGraphics();
+
+            callback.answerIsCorrect(qm.hashCode());
         } else {
             viewMvc.doIncorrectGraphics();
         }
+    }
+    public interface Listener  {
+        void answerIsCorrect(int id);
     }
 }

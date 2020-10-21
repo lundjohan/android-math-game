@@ -35,7 +35,6 @@ public class JSONDatabase implements Database {
             InputStream stream = assetManager.open("levels.json");
             Reader reader = new InputStreamReader(stream, "UTF-8");
             LevelModel[] levelModels = gson.fromJson(reader, LevelModel[].class);
-            Log.e(TAG, String.valueOf(levelModels.length));
             for (int i = 0; i < levelModels.length; i++) {
                 levels.add(levelModels[i].toLevel());
             }
