@@ -25,4 +25,9 @@ public class QuestionModel implements Serializable {
     public char getOperator() {
         return operator;
     }
+
+    @Override
+    public String toString(){
+        return ""+left+" "+operator + " "+right;
+    }
 }

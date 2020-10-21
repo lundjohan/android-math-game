@@ -70,7 +70,7 @@ class QuestionAdapter extends FragmentStateAdapter {
 
     /**
      *
-     * @param questionModelHashcode should be the questionModelHashcode equivalent of qms.get(pos).hashCode(),
+     * @param strOfQuestionModel should be the strOfQuestionModel equivalent of qms.get(pos).hashCode(),
      *                 where pos is the location of the fragment in ViewPager2.
      *
      *                 Since position will be altered -1 for the Fragments with place > pos,
@@ -79,10 +79,10 @@ class QuestionAdapter extends FragmentStateAdapter {
      *                 see: https://stackoverflow.com/questions/57938930/remove-fragment-in-viewpager2-use-fragmentstateadapter-but-still-display
      *
      */
-    void popQuestion(int questionModelHashcode) {
+    void popQuestion(String strOfQuestionModel) {
         for (int pos = 0; pos<qms.size(); pos++){
-            int hashCode = qms.get(pos).hashCode();
-            if (hashCode == questionModelHashcode){
+            String str = qms.get(pos).toString();
+            if (str.equals(strOfQuestionModel)){
                 qms.remove(pos);
                 notifyItemRemoved(pos);
                 notifyItemRangeChanged(pos, getItemCount());

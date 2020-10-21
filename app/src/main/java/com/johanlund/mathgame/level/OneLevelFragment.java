@@ -60,10 +60,10 @@ public class OneLevelFragment extends Fragment implements AnswerQuestionFragment
     }
 
     @Override
-    public void answerIsCorrect(int questionModelHashcode) {
+    public void answerIsCorrect(String questionModel) {
         ++correctAnswers;
         viewMvc.bindScoreToView(doScoreStr());
-        questionsAdapter.popQuestion(questionModelHashcode);
+        questionsAdapter.popQuestion(questionModel);
         if (correctAnswers == nrOfTotalQuestions){
            callback.changeLevelTo(levelNr + 1);
         }
