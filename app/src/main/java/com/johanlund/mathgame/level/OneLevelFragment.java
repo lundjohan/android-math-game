@@ -16,7 +16,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static com.johanlund.mathgame.common.Constants.LEVEL;
-import static com.johanlund.mathgame.common.Constants.LEVEL_TITLE;
+import static com.johanlund.mathgame.common.Constants.NR_OF_LEVEL;
 
 public class OneLevelFragment extends Fragment implements AnswerQuestionFragment.Listener {
     private OneLevelViewMvc viewMvc;
@@ -48,8 +48,8 @@ public class OneLevelFragment extends Fragment implements AnswerQuestionFragment
             viewMvc.createViewPager2(questionsAdapter);
 
             //Level title
-            String str = args.getString(LEVEL_TITLE);
-            viewMvc.bindLevelTitleToView(str);
+            levelNr = args.getInt(NR_OF_LEVEL);
+            viewMvc.bindLevelTitleToView("LEVEL "+ levelNr);
 
             //Score
             nrOfTotalQuestions = qms.size();
@@ -63,10 +63,10 @@ public class OneLevelFragment extends Fragment implements AnswerQuestionFragment
     public void answerIsCorrect(int questionModelHashcode) {
         ++correctAnswers;
         viewMvc.bindScoreToView(doScoreStr());
-        if (correctAnswers == nrOfTotalQuestions){
-           // callback.changeLevelTo();
-        }
         questionsAdapter.popQuestion(questionModelHashcode);
+        if (correctAnswers == nrOfTotalQuestions){
+           callback.changeLevelTo(levelNr + 1);
+        }
     }
 
     private String doScoreStr() {
