@@ -3,6 +3,9 @@ package com.johanlund.mathgame.common;
 import java.io.Serializable;
 
 public class Level implements Serializable {
+    /**
+     * questions should be unique inside one level!
+     */
     private QuestionModel[] questions;
     private int timeInSec;
 
