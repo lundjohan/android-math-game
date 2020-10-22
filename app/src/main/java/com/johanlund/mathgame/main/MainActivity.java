@@ -11,17 +11,20 @@ import com.johanlund.mathgame.level.OneLevelFragment;
 import com.johanlund.mathgame.level.OneLevelFragmentListener;
 import com.johanlund.mathgame.questionsProducer.QuestionsProducer;
 import com.johanlund.mathgame.questionsProducer.QuestionsProducerImpl;
+import com.johanlund.mathgame.win.WinFragment;
 
 import static com.johanlund.mathgame.common.Constants.LEVEL;
 import static com.johanlund.mathgame.common.Constants.NR_OF_LEVEL;
 
 public class MainActivity extends AppCompatActivity implements OneLevelFragmentListener {
-    private int currentLevel = 1;
+    private int currentLevel = 3;
+    int container;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        container = R.id.main_container;
         startLevel(true);
 
     }
@@ -33,9 +36,15 @@ public class MainActivity extends AppCompatActivity implements OneLevelFragmentL
     }
 
     private void startLevel(boolean beginningFragment) {
-        int container = R.id.main_container;
         QuestionsProducer qp = new QuestionsProducerImpl();
         Level level = qp.retrieveLevel(currentLevel, 3);
+
+        //null means that there are no more levels to get.
+        if (level == null){
+            showWin();
+            return;
+        }
+
         Bundle args = new Bundle();
         args.putSerializable(LEVEL, level);
         args.putInt(NR_OF_LEVEL, currentLevel);
@@ -50,6 +59,13 @@ public class MainActivity extends AppCompatActivity implements OneLevelFragmentL
         } else {
             transaction.replace(container, fragment);
         }
+        transaction.commit();
+    }
+
+    private void showWin() {
+        WinFragment fragment = new WinFragment();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(container, fragment);
         transaction.commit();
     }
 }

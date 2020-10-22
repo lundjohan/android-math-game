@@ -16,6 +16,9 @@ public class QuestionsProducerImpl implements QuestionsProducer {
     public Level retrieveLevel(int level, int nrOfQuestions) {
         Database database = DaggerLevelDatabaseFactory.create().database();
         Level tmp = database.getLevel(level);
+        if (tmp == null){
+            return null;
+        }
 
         //reduce amount of questions in Level
         int notHigherThanThis = nrOfQuestions < tmp.getQuestions().length  ?
