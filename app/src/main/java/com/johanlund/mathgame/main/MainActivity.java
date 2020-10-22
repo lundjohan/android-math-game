@@ -17,7 +17,7 @@ import static com.johanlund.mathgame.common.Constants.LEVEL;
 import static com.johanlund.mathgame.common.Constants.NR_OF_LEVEL;
 
 public class MainActivity extends AppCompatActivity implements OneLevelFragmentListener {
-    private int currentLevel = 3;
+    private int currentLevel = 4;
     int container;
 
     @Override
@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements OneLevelFragmentL
 
     private void startLevel(boolean beginningFragment) {
         QuestionsProducer qp = new QuestionsProducerImpl();
-        Level level = qp.retrieveLevel(currentLevel, 3);
+        Level level = qp.retrieveLevel(currentLevel, 5);
 
         //null means that there are no more levels to get.
         if (level == null){

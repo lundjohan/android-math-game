@@ -1,6 +1,7 @@
 package com.johanlund.mathgame.level;
 
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,12 +29,14 @@ public class OneLevelFragment extends Fragment implements AnswerQuestionFragment
     private int nrOfTotalQuestions;
     private int correctAnswers = 0;
     private int levelNr;
+    private int startTimeMilliSec;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         callback = (OneLevelFragmentListener) getActivity();
         viewMvc = new OneLevelViewMvcImpl(inflater, container);
+
 
         Bundle args = getArguments();
         if (args != null) {
@@ -55,7 +58,20 @@ public class OneLevelFragment extends Fragment implements AnswerQuestionFragment
             nrOfTotalQuestions = qms.size();
             viewMvc.bindScoreToView(doScoreStr());
 
+            //Time
+            startTimeMilliSec = level.getTimeInSec() * 1000;
+
         }
+        new CountDownTimer(startTimeMilliSec, 1000) {
+
+            public void onTick(long millisUntilFinished) {
+                viewMvc.bindTimeToView("" +millisUntilFinished / 1000);
+            }
+
+            public void onFinish() {
+                //create a Dialog with "You move down one level" And an OK btn.
+            }
+        }.start();
         return viewMvc.getRootView();
     }
 
