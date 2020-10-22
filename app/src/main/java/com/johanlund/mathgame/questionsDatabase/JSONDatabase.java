@@ -27,21 +27,31 @@ public class JSONDatabase implements Database {
     }
 
     @Override
-    public Level getLevel(int nr) {
-        List<Level> levels = new ArrayList<>();
+    public Level getLevel(int nr) throws IllegalArgumentException {
+        LevelModel[] levelModels;
+        Level toReturn = null;
+
+        if (nr < 1){
+            throw new IllegalArgumentException("Levels should start at 1!");
+        }
+
         try {
             Gson gson = new Gson();
-
             InputStream stream = assetManager.open("levels.json");
             Reader reader = new InputStreamReader(stream, "UTF-8");
-            LevelModel[] levelModels = gson.fromJson(reader, LevelModel[].class);
-            for (int i = 0; i < levelModels.length; i++) {
-                levels.add(levelModels[i].toLevel());
-            }
-        } catch (IOException e) {
-            Log.e(TAG, e.toString());
+            levelModels = gson.fromJson(reader, LevelModel[].class);
+
+            //Json level starting at 0, but this API counts on levels starting at 1.
+            toReturn = levelModels[nr-1].toLevel();
         }
-        //Json level starting at 0, but this API counts on levels starting at 1.
-        return levels.get(nr - 1);
+        catch (IOException e) {
+                Log.e(TAG, e.toString());
+        }
+        catch (IndexOutOfBoundsException e) {
+            Log.e(TAG,"Inside getLevel. " +
+                    "Index is higher than the arrays elements, null will be returned");
+
+        }
+        return toReturn;
     }
 }

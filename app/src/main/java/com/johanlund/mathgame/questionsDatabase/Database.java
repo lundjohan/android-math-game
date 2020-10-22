@@ -4,9 +4,9 @@ import com.johanlund.mathgame.common.Level;
 
 public interface Database {
     /**
-     * @param nr
-     * @return
-     * @rule nr > 0
+     * @param nr >= 1
+     * @exception is thrown if nr<1
+     * @return Level, or null if this level doesn't exist in database.
      */
-    Level getLevel(int nr);
+    Level getLevel(int nr) throws IllegalArgumentException;
 }

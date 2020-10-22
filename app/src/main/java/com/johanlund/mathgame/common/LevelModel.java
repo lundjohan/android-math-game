@@ -4,7 +4,7 @@ import com.johanlund.mathgame.util.Util;
 
 /**
  * uses:
- * works like a bridgde between json-file and Level.class
+ * works like a bridge between json-file and Level.class
  */
 public class LevelModel {
 
