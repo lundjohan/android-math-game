@@ -30,6 +30,7 @@ public class OneLevelFragment extends Fragment implements AnswerQuestionFragment
     private int correctAnswers = 0;
     private int levelNr;
     private int startTimeMilliSec;
+    private CountDownTimer countDownTimer;
 
     private final String TAG = this.getClass().getName();
 
@@ -65,13 +66,14 @@ public class OneLevelFragment extends Fragment implements AnswerQuestionFragment
 
         }
         final Fragment here = this;
-    new CountDownTimer(startTimeMilliSec, 1000) {
+    countDownTimer = new CountDownTimer(startTimeMilliSec, 1000) {
 
             public void onTick(long millisUntilFinished) {
                 viewMvc.bindTimeToView("" +millisUntilFinished / 1000);
             }
 
             public void onFinish() {
+
                 //This check  is needed so no threads from old/ other Fragments are calling callback.
                 if (here.isVisible()) {
                     callback.timeIsUp();
@@ -88,7 +90,10 @@ public class OneLevelFragment extends Fragment implements AnswerQuestionFragment
         viewMvc.bindScoreToView(doScoreStr());
         questionsAdapter.popQuestion(questionModel);
         if (correctAnswers == nrOfTotalQuestions){
-           callback.levelCompleted();
+
+            //Cancel the countdown (otherwise it keeps on in the background before user pressed ok)
+            countDownTimer.cancel();
+            callback.levelCompleted();
         }
     }
 
