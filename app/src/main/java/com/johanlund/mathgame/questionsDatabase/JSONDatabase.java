@@ -35,17 +35,10 @@ public class JSONDatabase implements Database {
             throw new IllegalArgumentException("Levels should start at 1!");
         }
 
+        levelModels = getLevelModels();
         try {
-            Gson gson = new Gson();
-            InputStream stream = assetManager.open("levels.json");
-            Reader reader = new InputStreamReader(stream, "UTF-8");
-            levelModels = gson.fromJson(reader, LevelModel[].class);
-
             //Json level starting at 0, but this API counts on levels starting at 1.
             toReturn = levelModels[nr-1].toLevel();
-        }
-        catch (IOException e) {
-                Log.e(TAG, e.toString());
         }
         catch (IndexOutOfBoundsException e) {
             Log.e(TAG,"Inside getLevel. " +
@@ -53,5 +46,25 @@ public class JSONDatabase implements Database {
 
         }
         return toReturn;
+    }
+
+    @Override
+    public int getNrOfLevels() {
+        return getLevelModels().length;
+    }
+
+    private LevelModel[] getLevelModels(){
+        LevelModel[] levelModels = null;
+        try {
+            Gson gson = new Gson();
+            InputStream stream = assetManager.open("levels.json");
+            Reader reader = new InputStreamReader(stream, "UTF-8");
+            levelModels = gson.fromJson(reader, LevelModel[].class);
+        }
+        catch (IOException e) {
+            Log.e(TAG, e.toString() +
+                    "Something is wrong with reading from JSON file. Null will be returned.");
+        }
+        return levelModels;
     }
 }

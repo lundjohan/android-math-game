@@ -26,4 +26,11 @@ public class QuestionsProducerImpl implements QuestionsProducer {
         QuestionModel[] questions = Arrays.copyOfRange(tmp.getQuestions(), 0, notHigherThanThis);
         return new Level(questions, tmp.getTimeInSecPerQuestion());
     }
+
+    @Override
+    public int getTotalNrOfLevels() {
+        Database database = DaggerLevelDatabaseFactory.create().database();
+        int sizeOfLevels = database.getNrOfLevels();
+        return sizeOfLevels;
+    }
 }

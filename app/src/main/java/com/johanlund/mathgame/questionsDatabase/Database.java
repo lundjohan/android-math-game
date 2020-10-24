@@ -9,4 +9,6 @@ public interface Database {
      * @return Level, or null if this level doesn't exist in database.
      */
     Level getLevel(int nr) throws IllegalArgumentException;
+
+    int getNrOfLevels();
 }

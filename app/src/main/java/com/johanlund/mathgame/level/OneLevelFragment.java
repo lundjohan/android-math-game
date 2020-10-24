@@ -31,6 +31,8 @@ public class OneLevelFragment extends Fragment implements AnswerQuestionFragment
     private int levelNr;
     private int startTimeMilliSec;
 
+    private final String TAG = this.getClass().getName();
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -62,16 +64,21 @@ public class OneLevelFragment extends Fragment implements AnswerQuestionFragment
             startTimeMilliSec = level.getTimeInSecPerQuestion() * nrOfTotalQuestions * 1000;
 
         }
-        new CountDownTimer(startTimeMilliSec, 1000) {
+        final Fragment here = this;
+    new CountDownTimer(startTimeMilliSec, 1000) {
 
             public void onTick(long millisUntilFinished) {
                 viewMvc.bindTimeToView("" +millisUntilFinished / 1000);
             }
 
             public void onFinish() {
-                //create a Dialog with "You move down one level" And an OK btn.
+                //This check  is needed so no threads from old/ other Fragments are calling callback.
+                if (here.isVisible()) {
+                    callback.timeIsUp();
+                }
             }
         }.start();
+
         return viewMvc.getRootView();
     }
 
@@ -81,7 +88,7 @@ public class OneLevelFragment extends Fragment implements AnswerQuestionFragment
         viewMvc.bindScoreToView(doScoreStr());
         questionsAdapter.popQuestion(questionModel);
         if (correctAnswers == nrOfTotalQuestions){
-           callback.changeLevelTo(levelNr + 1);
+           callback.levelCompleted();
         }
     }
 

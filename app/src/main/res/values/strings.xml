@@ -2,4 +2,9 @@
     <string name="app_name">MathGame</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="ok">OK</string>
+    <string name="time_is_up">Time is up!</string>
+    <string name="moving_down">Moving down one level...</string>
+    <string name="moving_up">Moving up one level...</string>
+    <string name="well_done">Well done!</string>
 </resources>
