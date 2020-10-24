@@ -6,6 +6,7 @@ import com.johanlund.mathgame.questionsDatabase.DaggerLevelDatabaseFactory;
 import com.johanlund.mathgame.questionsDatabase.Database;
 
 import java.util.Arrays;
+import java.util.Collections;
 
 public class QuestionsProducerImpl implements QuestionsProducer {
     /**
@@ -19,11 +20,16 @@ public class QuestionsProducerImpl implements QuestionsProducer {
         if (tmp == null) {
             return null;
         }
+        QuestionModel []questions = tmp.getQuestions();
 
-        //reduce amount of questions in Level
-        int notHigherThanThis = nrOfQuestions < tmp.getQuestions().length ?
+        //randomize
+        Collections.shuffle(Arrays.asList(questions));
+
+        //reduce
+        int notMoreThanThis = nrOfQuestions < tmp.getQuestions().length ?
                 nrOfQuestions : tmp.getQuestions().length;
-        QuestionModel[] questions = Arrays.copyOfRange(tmp.getQuestions(), 0, notHigherThanThis);
+        questions = Arrays.copyOfRange(questions, 0, notMoreThanThis);
+
         return new Level(questions, tmp.getTimeInSecPerQuestion());
     }
 
