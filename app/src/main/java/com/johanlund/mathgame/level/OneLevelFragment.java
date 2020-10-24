@@ -59,7 +59,7 @@ public class OneLevelFragment extends Fragment implements AnswerQuestionFragment
             viewMvc.bindScoreToView(doScoreStr());
 
             //Time
-            startTimeMilliSec = level.getTimeInSec() * 1000;
+            startTimeMilliSec = level.getTimeInSecPerQuestion() * nrOfTotalQuestions * 1000;
 
         }
         new CountDownTimer(startTimeMilliSec, 1000) {

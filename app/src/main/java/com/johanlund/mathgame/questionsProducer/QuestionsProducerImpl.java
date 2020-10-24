@@ -24,6 +24,6 @@ public class QuestionsProducerImpl implements QuestionsProducer {
         int notHigherThanThis = nrOfQuestions < tmp.getQuestions().length  ?
                 nrOfQuestions : tmp.getQuestions().length;
         QuestionModel[] questions = Arrays.copyOfRange(tmp.getQuestions(), 0, notHigherThanThis);
-        return new Level(questions, tmp.getTimeInSec());
+        return new Level(questions, tmp.getTimeInSecPerQuestion());
     }
 }

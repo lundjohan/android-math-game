@@ -7,12 +7,12 @@ public class Level implements Serializable {
      * questions should be unique inside one level!
      */
     private QuestionModel[] questions;
-    private int timeInSec;
+    private int timeInSecPerQuestion;
 
 
-    public Level(QuestionModel[] questions, int timeInSec) {
+    public Level(QuestionModel[] questions, int timeInSecPerQuestion) {
         this.questions = questions;
-        this.timeInSec = timeInSec;
+        this.timeInSecPerQuestion = timeInSecPerQuestion;
     }
 
     public Level(String[] questions, int timeInSec) {
@@ -23,7 +23,7 @@ public class Level implements Serializable {
         return questions;
     }
 
-    public int getTimeInSec() {
-        return timeInSec;
+    public int getTimeInSecPerQuestion() {
+        return timeInSecPerQuestion;
     }
 }

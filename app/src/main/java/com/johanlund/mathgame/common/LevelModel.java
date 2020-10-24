@@ -10,12 +10,12 @@ public class LevelModel {
 
 
     private String[] questions;
-    private int timeInSec;
+    private int timeInSecPerQuestion;
 
 
     public LevelModel(String[] questions, int timeInSec) {
         this.questions = questions;
-        this.timeInSec = timeInSec;
+        this.timeInSecPerQuestion = timeInSec;
     }
 
     /**
@@ -30,7 +30,7 @@ public class LevelModel {
         for (int i = 0; i < qs.length; i++) {
             qs[i] = Util.strToQuestionModel(questions[i]);
         }
-        return new Level(qs, timeInSec);
+        return new Level(qs, timeInSecPerQuestion);
     }
 }
 
