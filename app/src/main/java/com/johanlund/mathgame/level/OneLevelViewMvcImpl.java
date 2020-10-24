@@ -23,6 +23,7 @@ public class OneLevelViewMvcImpl implements OneLevelViewMvc {
         timeLeftView = view.findViewById(R.id.timeLeft);
 
     }
+
     @Override
     public void createViewPager2(QuestionAdapter qAdapter) {
         viewPager = view.findViewById(R.id.pager);

@@ -61,7 +61,7 @@ class QuestionAdapter extends FragmentStateAdapter {
     @Override
     public boolean containsItem(long itemId) {
         for (int pos = 0; pos < qms.size(); pos++) {
-            if (qms.get(pos).hashCode() == itemId){
+            if (qms.get(pos).hashCode() == itemId) {
                 return true;
             }
         }
@@ -69,20 +69,18 @@ class QuestionAdapter extends FragmentStateAdapter {
     }
 
     /**
-     *
      * @param strOfQuestionModel should be the strOfQuestionModel equivalent of qms.get(pos).hashCode(),
-     *                 where pos is the location of the fragment in ViewPager2.
-     *
-     *                 Since position will be altered -1 for the Fragments with place > pos,
-     *                  you cannot simple use pos as parameter and then qms.remove(pos).
-     *
-     *                 see: https://stackoverflow.com/questions/57938930/remove-fragment-in-viewpager2-use-fragmentstateadapter-but-still-display
-     *
+     *                           where pos is the location of the fragment in ViewPager2.
+     *                           <p>
+     *                           Since position will be altered -1 for the Fragments with place > pos,
+     *                           you cannot simple use pos as parameter and then qms.remove(pos).
+     *                           <p>
+     *                           see: https://stackoverflow.com/questions/57938930/remove-fragment-in-viewpager2-use-fragmentstateadapter-but-still-display
      */
     void popQuestion(String strOfQuestionModel) {
-        for (int pos = 0; pos<qms.size(); pos++){
+        for (int pos = 0; pos < qms.size(); pos++) {
             String str = qms.get(pos).toString();
-            if (str.equals(strOfQuestionModel)){
+            if (str.equals(strOfQuestionModel)) {
                 qms.remove(pos);
                 notifyItemRemoved(pos);
                 notifyItemRangeChanged(pos, getItemCount());

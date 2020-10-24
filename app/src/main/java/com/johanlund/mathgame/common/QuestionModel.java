@@ -27,7 +27,7 @@ public class QuestionModel implements Serializable {
     }
 
     @Override
-    public String toString(){
-        return ""+left+" "+operator + " "+right;
+    public String toString() {
+        return "" + left + " " + operator + " " + right;
     }
 }

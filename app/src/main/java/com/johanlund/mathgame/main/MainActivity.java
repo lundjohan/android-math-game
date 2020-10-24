@@ -85,11 +85,14 @@ public class MainActivity extends AppCompatActivity implements OneLevelFragmentL
         transaction.replace(container, fragment);
         transaction.commit();
     }
-    class OkDialog{
+
+    //INNER CLASS handling Dialogs
+    private class OkDialog {
         private void startMovingUpDialog(Context c) {
             AlertDialog.Builder builder = new AlertDialog.Builder(c);
-            builder.setPositiveButton(R.string.ok, (dialog, id)-> {
-                startLevel(false);}
+            builder.setPositiveButton(R.string.ok, (dialog, id) -> {
+                        startLevel(false);
+                    }
             );
             final AlertDialog dialog = builder.setMessage(R.string.moving_up)
                     .setTitle(R.string.well_done)
@@ -102,6 +105,7 @@ public class MainActivity extends AppCompatActivity implements OneLevelFragmentL
             positiveButtonLL.width = ViewGroup.LayoutParams.MATCH_PARENT;
             positiveButton.setLayoutParams(positiveButtonLL);
         }
+
         private void startTimeIsUpDialog(Context c) {
             //Create Dialog
             AlertDialog.Builder builder = new AlertDialog.Builder(c);

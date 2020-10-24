@@ -47,7 +47,7 @@ public class OneLevelFragment extends Fragment implements AnswerQuestionFragment
             Level level = (Level) args.getSerializable(LEVEL);
 
             //We need an ArrayList to be able to remove inside List
-            List<QuestionModel> qms  =
+            List<QuestionModel> qms =
                     new ArrayList<QuestionModel>(Arrays.asList(level.getQuestions()));
 
             questionsAdapter = new QuestionAdapter(this, qms);
@@ -55,7 +55,7 @@ public class OneLevelFragment extends Fragment implements AnswerQuestionFragment
 
             //Level title
             levelNr = args.getInt(NR_OF_LEVEL);
-            viewMvc.bindLevelTitleToView("LEVEL "+ levelNr);
+            viewMvc.bindLevelTitleToView("LEVEL " + levelNr);
 
             //Score
             nrOfTotalQuestions = qms.size();
@@ -66,10 +66,10 @@ public class OneLevelFragment extends Fragment implements AnswerQuestionFragment
 
         }
         final Fragment here = this;
-    countDownTimer = new CountDownTimer(startTimeMilliSec, 1000) {
+        countDownTimer = new CountDownTimer(startTimeMilliSec, 1000) {
 
             public void onTick(long millisUntilFinished) {
-                viewMvc.bindTimeToView("" +millisUntilFinished / 1000);
+                viewMvc.bindTimeToView("" + millisUntilFinished / 1000);
             }
 
             public void onFinish() {
@@ -89,7 +89,7 @@ public class OneLevelFragment extends Fragment implements AnswerQuestionFragment
         ++correctAnswers;
         viewMvc.bindScoreToView(doScoreStr());
         questionsAdapter.popQuestion(questionModel);
-        if (correctAnswers == nrOfTotalQuestions){
+        if (correctAnswers == nrOfTotalQuestions) {
 
             //Cancel the countdown (otherwise it keeps on in the background before user pressed ok)
             countDownTimer.cancel();

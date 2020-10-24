@@ -14,12 +14,13 @@ import static com.johanlund.mathgame.common.Constants.QUESTION_MODEL;
 
 /**
  * A Fragment that shows one question (e.g. "3+4"),
- *   allows him to answer, and checks if it is correct
+ * allows him to answer, and checks if it is correct
  */
 public class AnswerQuestionFragment extends Fragment implements AnswerQuestionViewMvc.Listener {
     private AnswerQuestionViewMvc viewMvc;
     private Listener callback;
     String TAG = this.getClass().getName();
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,7 +83,8 @@ public class AnswerQuestionFragment extends Fragment implements AnswerQuestionVi
             viewMvc.doIncorrectGraphics();
         }
     }
-    public interface Listener  {
+
+    public interface Listener {
         void answerIsCorrect(String id);
     }
 }
