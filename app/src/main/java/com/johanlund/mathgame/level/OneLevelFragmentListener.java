@@ -4,5 +4,5 @@ public interface OneLevelFragmentListener {
     void levelCompleted();
 
     //The countdown time for level has reached zero
-    void timeIsUp();
+    void levelTimeIsUp();
 }

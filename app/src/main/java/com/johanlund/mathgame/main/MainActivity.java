@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity implements OneLevelFragmentL
 
 
     @Override
-    public void timeIsUp() {
+    public void levelTimeIsUp() {
         //If possible: move down one level
         currentLevel = currentLevel > 1 ? currentLevel - 1 : 1;
         new OkDialog().startTimeIsUpDialog(this);

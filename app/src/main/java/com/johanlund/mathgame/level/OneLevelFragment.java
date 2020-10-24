@@ -76,7 +76,7 @@ public class OneLevelFragment extends Fragment implements AnswerQuestionFragment
 
                 //This check  is needed so no threads from old/ other Fragments are calling callback.
                 if (here.isVisible()) {
-                    callback.timeIsUp();
+                    callback.levelTimeIsUp();
                 }
             }
         }.start();
