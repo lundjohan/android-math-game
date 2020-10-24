@@ -1,6 +1,6 @@
 package com.johanlund.mathgame.main;
 
-import android.content.DialogInterface;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -46,46 +46,16 @@ public class MainActivity extends AppCompatActivity implements OneLevelFragmentL
             return;
         }
         ++currentLevel;
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                startLevel(false);
-            }
-        });
-        final AlertDialog dialog = builder.setMessage(R.string.moving_up)
-                .setTitle(R.string.well_done)
-                .create();
-                dialog.show();
+        new OkDialog().startMovingUpDialog(this);
 
-        //Put OK btn in the centre
-        final Button positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
-        LinearLayout.LayoutParams positiveButtonLL = (LinearLayout.LayoutParams) positiveButton.getLayoutParams();
-        positiveButtonLL.width = ViewGroup.LayoutParams.MATCH_PARENT;
-        positiveButton.setLayoutParams(positiveButtonLL);
     }
+
 
     @Override
     public void timeIsUp() {
-        //Create Dialog
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                //If possible: move down one level
-                currentLevel = currentLevel > 1 ? currentLevel - 1 : 1;
-
-                startLevel(false);
-            }
-        });
-        final AlertDialog dialog = builder.setMessage(R.string.moving_down)
-                .setTitle(R.string.time_is_up)
-                .create();
-        dialog.show();
-
-        //Put OK btn in the centre
-        final Button positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
-        LinearLayout.LayoutParams positiveButtonLL = (LinearLayout.LayoutParams) positiveButton.getLayoutParams();
-        positiveButtonLL.width = ViewGroup.LayoutParams.MATCH_PARENT;
-        positiveButton.setLayoutParams(positiveButtonLL);
+        //If possible: move down one level
+        currentLevel = currentLevel > 1 ? currentLevel - 1 : 1;
+        new OkDialog().startTimeIsUpDialog(this);
     }
 
     private void startLevel(boolean beginningFragment) {
@@ -115,8 +85,39 @@ public class MainActivity extends AppCompatActivity implements OneLevelFragmentL
         transaction.replace(container, fragment);
         transaction.commit();
     }
+    class OkDialog{
+        private void startMovingUpDialog(Context c) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(c);
+            builder.setPositiveButton(R.string.ok, (dialog, id)-> {
+                startLevel(false);}
+            );
+            final AlertDialog dialog = builder.setMessage(R.string.moving_up)
+                    .setTitle(R.string.well_done)
+                    .create();
+            dialog.show();
 
-    private void createDialogWithOkBtn() {
+            //Put OK btn in the centre
+            final Button positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+            LinearLayout.LayoutParams positiveButtonLL = (LinearLayout.LayoutParams) positiveButton.getLayoutParams();
+            positiveButtonLL.width = ViewGroup.LayoutParams.MATCH_PARENT;
+            positiveButton.setLayoutParams(positiveButtonLL);
+        }
+        private void startTimeIsUpDialog(Context c) {
+            //Create Dialog
+            AlertDialog.Builder builder = new AlertDialog.Builder(c);
+            builder.setPositiveButton(R.string.ok, (dialog, id) -> {
+                startLevel(false);
+            });
+            final AlertDialog dialog = builder.setMessage(R.string.moving_down)
+                    .setTitle(R.string.time_is_up)
+                    .create();
+            dialog.show();
 
+            //Put OK btn in the centre
+            final Button positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+            LinearLayout.LayoutParams positiveButtonLL = (LinearLayout.LayoutParams) positiveButton.getLayoutParams();
+            positiveButtonLL.width = ViewGroup.LayoutParams.MATCH_PARENT;
+            positiveButton.setLayoutParams(positiveButtonLL);
+        }
     }
 }
