@@ -2,7 +2,7 @@
   {
     "difficulty": "Easy",
     "description": "Addition between single numbers",
-    "timeInSecPerQuestion": 3,
+    "timeInSecPerQuestion": 4,
     "questions": [
       "2+3",
       "2+4",
@@ -25,7 +25,7 @@
   {
     "difficulty": "Easy",
     "description": "Subtraction between single numbers",
-    "timeInSecPerQuestion": 3,
+    "timeInSecPerQuestion": 4,
     "questions": [
       "4-2",
       "4-3",
@@ -47,7 +47,7 @@
   {
     "difficulty": "Easy",
     "description": "Multiplication between single numbers <10",
-    "timeInSecPerQuestion": 4,
+    "timeInSecPerQuestion": 5,
     "questions": [
       "2*2",
       "2*3",
@@ -75,7 +75,7 @@
   {
     "difficulty": "Easy",
     "description": "The earlier level as division",
-    "timeInSecPerQuestion": 5,
+    "timeInSecPerQuestion": 6,
     "questions": [
       "8/2",
       "10/2",
@@ -102,7 +102,7 @@
   {
     "difficulty": "Easy",
     "description": "Mixed Easy questions",
-    "timeInSecPerQuestion": 4,
+    "timeInSecPerQuestion": 5,
     "questions": [
       "4+9",
       "5+4",
@@ -129,7 +129,7 @@
   {
     "difficulty": "Intermediate",
     "description": "Addition between double numbers",
-    "timeInSecPerQuestion": 3,
+    "timeInSecPerQuestion": 4,
     "questions": [
       "11+28",
       "16+36",
@@ -153,7 +153,7 @@
   {
     "difficulty": "Intermediate",
     "description": "Subtraction between double numbers",
-    "timeInSecPerQuestion": 3,
+    "timeInSecPerQuestion": 4,
     "questions": [
       "99-54",
       "93-76",
@@ -207,7 +207,7 @@
   {
     "difficulty": "Intermediate",
     "description": "Level before as division",
-    "timeInSecPerQuestion": 6,
+    "timeInSecPerQuestion": 5,
     "questions": [
       "288/12",
       "120/5",
@@ -312,7 +312,7 @@
   {
     "difficulty": "Hard",
     "description": "Multiplication where both factors are between 24 and 13",
-    "timeInSecPerQuestion": 5,
+    "timeInSecPerQuestion": 6,
     "questions": [
       "24*13",
       "24*18",

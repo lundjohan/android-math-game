@@ -25,10 +25,10 @@ import static com.johanlund.mathgame.common.Constants.NR_OF_LEVEL;
 import static com.johanlund.mathgame.common.Constants.TOT_NR_OF_LEVELS;
 
 public class MainActivity extends AppCompatActivity implements WelcomeFragment.Listener,OneLevelFragment.Listener {
-    private final int QUESTIONS_PER_LEVEL = 2;
+    private final int QUESTIONS_PER_LEVEL = 5;
     private int totNrOfLevels;
     private LevelInfo [] infoAboutLevels;
-    private int currentLevel = 3;
+    private int currentLevel = 1;
     int container;
 
     @Override
