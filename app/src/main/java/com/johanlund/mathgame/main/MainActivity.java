@@ -12,12 +12,14 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.johanlund.mathgame.R;
 import com.johanlund.mathgame.common.Level;
+import com.johanlund.mathgame.common.LevelInfo;
 import com.johanlund.mathgame.level.OneLevelFragment;
 import com.johanlund.mathgame.questionsProducer.QuestionsProducer;
 import com.johanlund.mathgame.questionsProducer.QuestionsProducerImpl;
 import com.johanlund.mathgame.welcomePage.WelcomeFragment;
 import com.johanlund.mathgame.win.WinFragment;
 
+import static com.johanlund.mathgame.common.Constants.INFO_ABOUT_LEVELS;
 import static com.johanlund.mathgame.common.Constants.LEVEL;
 import static com.johanlund.mathgame.common.Constants.NR_OF_LEVEL;
 import static com.johanlund.mathgame.common.Constants.TOT_NR_OF_LEVELS;
@@ -25,6 +27,7 @@ import static com.johanlund.mathgame.common.Constants.TOT_NR_OF_LEVELS;
 public class MainActivity extends AppCompatActivity implements WelcomeFragment.Listener,OneLevelFragment.Listener {
     private final int QUESTIONS_PER_LEVEL = 2;
     private int totNrOfLevels;
+    private LevelInfo [] infoAboutLevels;
     private int currentLevel = 3;
     int container;
 
@@ -36,12 +39,14 @@ public class MainActivity extends AppCompatActivity implements WelcomeFragment.L
 
         QuestionsProducer qp = new QuestionsProducerImpl();
         totNrOfLevels = qp.getTotalNrOfLevels();
+        infoAboutLevels = qp.getLevelInfos();
         startWelcomePage();
 
     }
     private void startWelcomePage(){
         Bundle args = new Bundle();
         args.putInt(TOT_NR_OF_LEVELS, totNrOfLevels);
+        args.putSerializable(INFO_ABOUT_LEVELS, infoAboutLevels);
 
         WelcomeFragment fragment = new WelcomeFragment();
         fragment.setArguments(args);

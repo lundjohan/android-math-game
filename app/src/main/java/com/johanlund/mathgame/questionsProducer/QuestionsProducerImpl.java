@@ -1,6 +1,7 @@
 package com.johanlund.mathgame.questionsProducer;
 
 import com.johanlund.mathgame.common.Level;
+import com.johanlund.mathgame.common.LevelInfo;
 import com.johanlund.mathgame.common.QuestionModel;
 import com.johanlund.mathgame.questionsDatabase.DaggerLevelDatabaseFactory;
 import com.johanlund.mathgame.questionsDatabase.Database;
@@ -38,5 +39,12 @@ public class QuestionsProducerImpl implements QuestionsProducer {
         Database database = DaggerLevelDatabaseFactory.create().database();
         int sizeOfLevels = database.getNrOfLevels();
         return sizeOfLevels;
+    }
+
+    @Override
+    public LevelInfo[] getLevelInfos() {
+        Database database = DaggerLevelDatabaseFactory.create().database();
+        LevelInfo [] levelInfos = database.getLevelInfos();
+        return levelInfos;
     }
 }

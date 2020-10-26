@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 import com.johanlund.mathgame.common.Level;
+import com.johanlund.mathgame.common.LevelInfo;
 import com.johanlund.mathgame.common.LevelModel;
 
 import java.io.IOException;
@@ -48,6 +49,16 @@ public class JSONDatabase implements Database {
     @Override
     public int getNrOfLevels() {
         return getLevelModels().length;
+    }
+
+    @Override
+    public LevelInfo[] getLevelInfos() {
+        LevelModel [] levelModels = getLevelModels();
+        LevelInfo [] levelInfos = new LevelInfo[levelModels.length];
+        for (int i = 0;i<levelModels.length;i++){
+            levelInfos[i] = levelModels[i].toLevelInfo();
+        }
+        return levelInfos;
     }
 
     private LevelModel[] getLevelModels() {

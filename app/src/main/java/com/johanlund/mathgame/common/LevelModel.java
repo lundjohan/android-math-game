@@ -8,12 +8,15 @@ import com.johanlund.mathgame.util.Util;
  */
 public class LevelModel {
 
-
+    private String difficulty;
+    private String description;
     private String[] questions;
     private int timeInSecPerQuestion;
 
 
-    public LevelModel(String[] questions, int timeInSec) {
+    public LevelModel(String difficulty, String descr, String[] questions, int timeInSec) {
+        this.difficulty = difficulty;
+        this.description = descr;
         this.questions = questions;
         this.timeInSecPerQuestion = timeInSec;
     }
@@ -31,6 +34,9 @@ public class LevelModel {
             qs[i] = Util.strToQuestionModel(questions[i]);
         }
         return new Level(qs, timeInSecPerQuestion);
+    }
+    public LevelInfo toLevelInfo(){
+        return new LevelInfo(difficulty, description);
     }
 }
 

@@ -1,6 +1,7 @@
 package com.johanlund.mathgame.questionsDatabase;
 
 import com.johanlund.mathgame.common.Level;
+import com.johanlund.mathgame.common.LevelInfo;
 
 public interface Database {
     /**
@@ -11,4 +12,6 @@ public interface Database {
     Level getLevel(int nr) throws IllegalArgumentException;
 
     int getNrOfLevels();
+
+    LevelInfo[] getLevelInfos();
 }

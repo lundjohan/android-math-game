@@ -11,11 +11,19 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 
 import com.johanlund.mathgame.R;
+import com.johanlund.mathgame.common.LevelInfo;
 
+import static com.johanlund.mathgame.common.Constants.INFO_ABOUT_LEVELS;
 import static com.johanlund.mathgame.common.Constants.TOT_NR_OF_LEVELS;
 
 public class WelcomeFragment extends Fragment {
-    Listener callback;
+    private Listener callback;
+    private LevelInfo[] infoAboutLevels;
+    private TextView levelNrView;
+    private TextView difficultyView;
+    private TextView descriptionView;
+    private Button sendBtn;
+    private SeekBar levelChooser;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -27,13 +35,14 @@ public class WelcomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_welcome_fragment, container, false);
-        TextView levelNrView = view.findViewById(R.id.levelNr);
-
-        Button sendBtn = view.findViewById(R.id.sendBtn);
-
         Bundle args = getArguments();
+        infoAboutLevels = (LevelInfo[]) args.getSerializable(INFO_ABOUT_LEVELS);
 
-        SeekBar levelChooser = view.findViewById(R.id.levelChooser);
+        levelNrView = view.findViewById(R.id.levelNr);
+        difficultyView = view.findViewById(R.id.difficulty);
+        descriptionView = view.findViewById(R.id.description);
+        sendBtn = view.findViewById(R.id.sendBtn);
+        levelChooser = view.findViewById(R.id.levelChooser);
 
         // levels start at 1
         int minSeekBar = 1;
@@ -43,7 +52,9 @@ public class WelcomeFragment extends Fragment {
         levelChooser.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                levelNrView.setText(String.valueOf(progress + minSeekBar));
+                levelNrView.setText("Level "+ String.valueOf(progress + minSeekBar));
+                difficultyView.setText(infoAboutLevels[progress].getDifficulty());
+                descriptionView.setText(infoAboutLevels[progress].getDescription());
             }
 
             @Override
