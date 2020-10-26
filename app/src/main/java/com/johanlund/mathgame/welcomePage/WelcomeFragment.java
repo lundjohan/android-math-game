@@ -52,7 +52,7 @@ public class WelcomeFragment extends Fragment {
         levelChooser.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                levelNrView.setText("Level "+ String.valueOf(progress + minSeekBar));
+                levelNrView.setText(String.valueOf(progress + minSeekBar));
                 difficultyView.setText(infoAboutLevels[progress].getDifficulty());
                 descriptionView.setText(infoAboutLevels[progress].getDescription());
             }
