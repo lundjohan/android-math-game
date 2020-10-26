@@ -15,12 +15,12 @@ import com.johanlund.mathgame.R;
 import static com.johanlund.mathgame.common.Constants.TOT_NR_OF_LEVELS;
 
 public class WelcomeFragment extends Fragment {
-    WelcomeFragmentListener callback;
+    Listener callback;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        callback = (WelcomeFragmentListener) getActivity();
+        callback = (Listener) getActivity();
     }
 
     @Override
@@ -64,7 +64,7 @@ public class WelcomeFragment extends Fragment {
         return view;
     }
 
-    public interface WelcomeFragmentListener {
+    public interface Listener {
         void setCurrentLevel(int level);
 
         void startGame();

@@ -21,7 +21,7 @@ import static com.johanlund.mathgame.common.Constants.NR_OF_LEVEL;
 
 public class OneLevelFragment extends Fragment implements AnswerQuestionFragment.Listener {
     private OneLevelViewMvc viewMvc;
-    private OneLevelFragmentListener callback;
+    private OneLevelFragment.Listener callback;
 
     /*ref to QuestionAdapter could also be placed in view, but feels more naturally here as this is
     the controller.*/
@@ -37,7 +37,7 @@ public class OneLevelFragment extends Fragment implements AnswerQuestionFragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        callback = (OneLevelFragmentListener) getActivity();
+        callback = (OneLevelFragment.Listener) getActivity();
         viewMvc = new OneLevelViewMvcImpl(inflater, container);
 
 
@@ -99,6 +99,13 @@ public class OneLevelFragment extends Fragment implements AnswerQuestionFragment
 
     private String doScoreStr() {
         return "" + correctAnswers + "/ " + nrOfTotalQuestions;
+    }
+
+    public interface Listener {
+        void levelCompleted();
+
+        //The countdown time for level has reached zero
+        void levelTimeIsUp();
     }
 }
 

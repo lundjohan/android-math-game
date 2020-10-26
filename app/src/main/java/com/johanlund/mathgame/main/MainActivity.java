@@ -13,7 +13,6 @@ import androidx.fragment.app.FragmentTransaction;
 import com.johanlund.mathgame.R;
 import com.johanlund.mathgame.common.Level;
 import com.johanlund.mathgame.level.OneLevelFragment;
-import com.johanlund.mathgame.level.OneLevelFragmentListener;
 import com.johanlund.mathgame.questionsProducer.QuestionsProducer;
 import com.johanlund.mathgame.questionsProducer.QuestionsProducerImpl;
 import com.johanlund.mathgame.welcomePage.WelcomeFragment;
@@ -23,7 +22,7 @@ import static com.johanlund.mathgame.common.Constants.LEVEL;
 import static com.johanlund.mathgame.common.Constants.NR_OF_LEVEL;
 import static com.johanlund.mathgame.common.Constants.TOT_NR_OF_LEVELS;
 
-public class MainActivity extends AppCompatActivity implements WelcomeFragment.WelcomeFragmentListener,OneLevelFragmentListener {
+public class MainActivity extends AppCompatActivity implements WelcomeFragment.Listener,OneLevelFragment.Listener {
     private final int QUESTIONS_PER_LEVEL = 2;
     private int totNrOfLevels;
     private int currentLevel = 3;
