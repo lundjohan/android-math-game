@@ -16,12 +16,14 @@ import com.johanlund.mathgame.level.OneLevelFragment;
 import com.johanlund.mathgame.level.OneLevelFragmentListener;
 import com.johanlund.mathgame.questionsProducer.QuestionsProducer;
 import com.johanlund.mathgame.questionsProducer.QuestionsProducerImpl;
+import com.johanlund.mathgame.welcomePage.WelcomeFragment;
 import com.johanlund.mathgame.win.WinFragment;
 
 import static com.johanlund.mathgame.common.Constants.LEVEL;
 import static com.johanlund.mathgame.common.Constants.NR_OF_LEVEL;
+import static com.johanlund.mathgame.common.Constants.TOT_NR_OF_LEVELS;
 
-public class MainActivity extends AppCompatActivity implements OneLevelFragmentListener {
+public class MainActivity extends AppCompatActivity implements WelcomeFragment.WelcomeFragmentListener,OneLevelFragmentListener {
     private final int QUESTIONS_PER_LEVEL = 2;
     private int totNrOfLevels;
     private int currentLevel = 3;
@@ -35,8 +37,28 @@ public class MainActivity extends AppCompatActivity implements OneLevelFragmentL
 
         QuestionsProducer qp = new QuestionsProducerImpl();
         totNrOfLevels = qp.getTotalNrOfLevels();
-        startLevel(true);
+        startWelcomePage();
 
+    }
+    private void startWelcomePage(){
+        Bundle args = new Bundle();
+        args.putInt(TOT_NR_OF_LEVELS, totNrOfLevels);
+
+        WelcomeFragment fragment = new WelcomeFragment();
+        fragment.setArguments(args);
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.add(container, fragment);
+        transaction.commit();
+    }
+
+    @Override
+    public void setCurrentLevel(int level){
+        currentLevel = level;
+    }
+
+    @Override
+    public void startGame() {
+        startLevel();
     }
 
     @Override
@@ -58,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements OneLevelFragmentL
         new OkDialog().startDialog(this, R.string.time_is_up, R.string.moving_down);
     }
 
-    private void startLevel(boolean beginningFragment) {
+    private void startLevel() {
         QuestionsProducer qp = new QuestionsProducerImpl();
         Level level = qp.retrieveLevel(currentLevel, QUESTIONS_PER_LEVEL);
 
@@ -70,12 +92,7 @@ public class MainActivity extends AppCompatActivity implements OneLevelFragmentL
         fragment.setArguments(args);
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-
-        if (beginningFragment) {
-            transaction.add(container, fragment);
-        } else {
-            transaction.replace(container, fragment);
-        }
+        transaction.replace(container, fragment);
         transaction.commit();
     }
 
@@ -91,7 +108,7 @@ public class MainActivity extends AppCompatActivity implements OneLevelFragmentL
         private void startDialog(Context c, int title, int msg) {
             AlertDialog.Builder builder = new AlertDialog.Builder(c);
             builder.setPositiveButton(R.string.ok, (dialog, id) -> {
-                        startLevel(false);
+                        startLevel();
                     }
             );
             final AlertDialog dialog = builder.setMessage(msg)
