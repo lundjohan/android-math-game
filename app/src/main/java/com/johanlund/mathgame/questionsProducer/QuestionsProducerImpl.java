@@ -15,7 +15,7 @@ public class QuestionsProducerImpl implements QuestionsProducer {
      * @return Level if it exists, otwerwise null.
      */
     @Override
-    public Level retrieveLevel(int level, int nrOfQuestions) {
+    public Level getLevel(int level, int nrOfQuestions) {
         Database database = DaggerLevelDatabaseFactory.create().database();
         Level tmp = database.getLevel(level);
         if (tmp == null) {

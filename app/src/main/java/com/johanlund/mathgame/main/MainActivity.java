@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements WelcomeFragment.L
 
     private void startLevel() {
         QuestionsProducer qp = new QuestionsProducerImpl();
-        Level level = qp.retrieveLevel(currentLevel, QUESTIONS_PER_LEVEL);
+        Level level = qp.getLevel(currentLevel, QUESTIONS_PER_LEVEL);
 
         Bundle args = new Bundle();
         args.putSerializable(LEVEL, level);

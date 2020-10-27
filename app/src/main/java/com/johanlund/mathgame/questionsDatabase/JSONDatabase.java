@@ -16,12 +16,12 @@ import java.io.Reader;
 import javax.inject.Inject;
 
 public class JSONDatabase implements Database {
+    private final String FILENAME = "levels.json";
+    private AssetManager assetManager;
     private final String TAG = "JSONDatabase";
-    AssetManager assetManager;
 
     @Inject
     public JSONDatabase(AssetManager assets) {
-
         assetManager = assets;
     }
 
@@ -65,7 +65,7 @@ public class JSONDatabase implements Database {
         LevelModel[] levelModels = null;
         try {
             Gson gson = new Gson();
-            InputStream stream = assetManager.open("levels.json");
+            InputStream stream = assetManager.open(FILENAME);
             Reader reader = new InputStreamReader(stream, "UTF-8");
             levelModels = gson.fromJson(reader, LevelModel[].class);
         } catch (IOException e) {

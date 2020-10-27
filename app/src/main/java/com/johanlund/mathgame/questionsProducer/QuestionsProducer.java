@@ -4,7 +4,7 @@ import com.johanlund.mathgame.common.Level;
 import com.johanlund.mathgame.common.LevelInfo;
 
 public interface QuestionsProducer {
-    Level retrieveLevel(int level, int nrOfQuestions);
+    Level getLevel(int level, int nrOfQuestions);
 
     int getTotalNrOfLevels();
 
