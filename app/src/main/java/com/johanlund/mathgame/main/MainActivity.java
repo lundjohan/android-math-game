@@ -2,10 +2,12 @@ package com.johanlund.mathgame.main;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
@@ -30,19 +32,33 @@ public class MainActivity extends AppCompatActivity implements WelcomeFragment.L
     private LevelInfo [] infoAboutLevels;
     private int currentLevel = 1;
     int container;
+    ActionBar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         container = R.id.main_container;
+        toolbar = getSupportActionBar();
 
         QuestionsProducer qp = new QuestionsProducerImpl();
         totNrOfLevels = qp.getTotalNrOfLevels();
         infoAboutLevels = qp.getLevelInfos();
         startWelcomePage();
-
     }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+
+            //android.R.id.home is the top back button
+            case android.R.id.home:
+                startWelcomePage();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
     private void startWelcomePage(){
         Bundle args = new Bundle();
         args.putInt(TOT_NR_OF_LEVELS, totNrOfLevels);
@@ -51,8 +67,11 @@ public class MainActivity extends AppCompatActivity implements WelcomeFragment.L
         WelcomeFragment fragment = new WelcomeFragment();
         fragment.setArguments(args);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.add(container, fragment);
+        transaction.replace(container, fragment);
         transaction.commit();
+
+        //This IS the start page and home arrow should not be displayed
+        toolbar.setDisplayHomeAsUpEnabled(false);
     }
 
     @Override
@@ -98,6 +117,9 @@ public class MainActivity extends AppCompatActivity implements WelcomeFragment.L
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(container, fragment);
         transaction.commit();
+
+        //User should be able to go to start page from this screen
+        toolbar.setDisplayHomeAsUpEnabled(true);
     }
 
     private void showWin() {
@@ -105,6 +127,9 @@ public class MainActivity extends AppCompatActivity implements WelcomeFragment.L
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(container, fragment);
         transaction.commit();
+
+        //User should be able to go to start page from this screen
+        toolbar.setDisplayHomeAsUpEnabled(true);
     }
 
     //INNER CLASS handling Dialogs
