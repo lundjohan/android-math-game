@@ -61,7 +61,6 @@ public class MainActivity extends AppCompatActivity implements WelcomeFragment.L
 
     private void startWelcomePage(){
         Bundle args = new Bundle();
-        args.putInt(TOT_NR_OF_LEVELS, totNrOfLevels);
         args.putSerializable(INFO_ABOUT_LEVELS, infoAboutLevels);
 
         WelcomeFragment fragment = new WelcomeFragment();
