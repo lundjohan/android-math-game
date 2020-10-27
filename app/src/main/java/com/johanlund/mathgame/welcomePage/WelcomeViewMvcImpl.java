@@ -26,27 +26,6 @@ public class WelcomeViewMvcImpl implements WelcomeViewMvc {
         descriptionView = view.findViewById(R.id.description);
         sendBtn = view.findViewById(R.id.sendBtn);
         levelChooser = view.findViewById(R.id.levelChooser);
-
-        //Levels go from 1 to 15 for example. But Seekbar goes from 0 to 14, therefor +1.
-        levelChooser.setMax(callback.getLastLevelNr()-1);
-        levelChooser.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                levelNrView.setText(String.valueOf(progress + callback.getFirstLevelNr()));
-                difficultyView.setText(callback.getInfoForLevelWithNr(progress+1).getDifficulty());
-                descriptionView.setText(callback.getInfoForLevelWithNr(progress+1).getDescription());
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });
         sendBtn.setOnClickListener(v -> {
                     callback.startPressed();
                 }
@@ -61,5 +40,25 @@ public class WelcomeViewMvcImpl implements WelcomeViewMvc {
     @Override
     public String retrieveLevelNrFromView() {
         return levelNrView.getText().toString();
+    }
+
+    @Override
+    public SeekBar getLevelChooser(){
+        return levelChooser;
+    }
+
+    @Override
+    public void setDescriptionView(String description) {
+        descriptionView.setText(description);
+    }
+
+    @Override
+    public void setDifficultyView(String difficulty) {
+        difficultyView.setText(difficulty);
+    }
+
+    @Override
+    public void setLevelNrView(String valueOf) {
+        levelNrView.setText(valueOf);
     }
 }
