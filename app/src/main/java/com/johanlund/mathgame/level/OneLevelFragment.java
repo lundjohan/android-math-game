@@ -67,7 +67,7 @@ public class OneLevelFragment extends Fragment implements AnswerQuestionFragment
         //FIRST INITIATION
         else {
             //Level
-            Level level = (Level) args.getSerializable(LEVEL);
+            Level level = (Level) args.getParcelable(LEVEL);
 
             //Questions List
             qms = new ArrayList<>(Arrays.asList(level.getQuestions()));

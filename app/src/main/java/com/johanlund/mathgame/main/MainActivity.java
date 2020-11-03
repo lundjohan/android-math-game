@@ -136,7 +136,7 @@ public class MainActivity extends AppCompatActivity implements WelcomeFragment.L
         Level level = qp.getLevel(currentLevel, QUESTIONS_PER_LEVEL);
 
         Bundle args = new Bundle();
-        args.putSerializable(LEVEL, level);
+        args.putParcelable(LEVEL, level);
         args.putInt(NR_OF_LEVEL, currentLevel);
 
         OneLevelFragment fragment = new OneLevelFragment();
