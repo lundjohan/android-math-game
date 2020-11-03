@@ -2,6 +2,7 @@ package com.johanlund.mathgame.main;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -24,7 +25,9 @@ import com.johanlund.mathgame.win.WinFragment;
 import static com.johanlund.mathgame.common.Constants.INFO_ABOUT_LEVELS;
 import static com.johanlund.mathgame.common.Constants.LEVEL;
 import static com.johanlund.mathgame.common.Constants.NR_OF_LEVEL;
-import static com.johanlund.mathgame.common.Constants.TOT_NR_OF_LEVELS;
+import static com.johanlund.mathgame.common.Constants.TAG_ONE_LEVEL_FRAGMENT;
+import static com.johanlund.mathgame.common.Constants.TAG_WELCOME_FRAGMENT;
+import static com.johanlund.mathgame.common.Constants.TAG_WINNER_FRAGMENT;
 
 public class MainActivity extends AppCompatActivity implements WelcomeFragment.Listener,OneLevelFragment.Listener {
     private final int QUESTIONS_PER_LEVEL = 5;
@@ -34,8 +37,10 @@ public class MainActivity extends AppCompatActivity implements WelcomeFragment.L
     int container;
     ActionBar toolbar;
 
+    final String TAG = getClass().getName();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.d(TAG, "inside onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         container = R.id.main_container;
@@ -46,13 +51,21 @@ public class MainActivity extends AppCompatActivity implements WelcomeFragment.L
         infoAboutLevels = qp.getLevelInfos();
         startWelcomePage();
     }
+
+
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
 
             //android.R.id.home is the top back button
             case android.R.id.home:
-                startWelcomePage();
+                getSupportFragmentManager().popBackStackImmediate();
+
+                //If we have reached start page => then no back arrow should be shown
+                if (getSupportFragmentManager().getFragments().size()<=1){
+                    toolbar.setDisplayHomeAsUpEnabled(false);
+                }
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -66,11 +79,9 @@ public class MainActivity extends AppCompatActivity implements WelcomeFragment.L
         WelcomeFragment fragment = new WelcomeFragment();
         fragment.setArguments(args);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(container, fragment);
+        transaction.add(container, fragment, TAG_WELCOME_FRAGMENT);
+        transaction.addToBackStack(TAG_WELCOME_FRAGMENT);
         transaction.commit();
-
-        //This IS the start page and home arrow should not be displayed
-        toolbar.setDisplayHomeAsUpEnabled(false);
     }
 
     @Override
@@ -114,7 +125,8 @@ public class MainActivity extends AppCompatActivity implements WelcomeFragment.L
         fragment.setArguments(args);
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(container, fragment);
+        transaction.add(container, fragment, TAG_ONE_LEVEL_FRAGMENT);
+        transaction.addToBackStack(TAG_ONE_LEVEL_FRAGMENT);
         transaction.commit();
 
         //User should be able to go to start page from this screen
@@ -124,7 +136,8 @@ public class MainActivity extends AppCompatActivity implements WelcomeFragment.L
     private void showWin() {
         WinFragment fragment = new WinFragment();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(container, fragment);
+        transaction.add(container, fragment, TAG_WINNER_FRAGMENT);
+        transaction.addToBackStack(TAG_WINNER_FRAGMENT);
         transaction.commit();
 
         //User should be able to go to start page from this screen
