@@ -1,5 +1,7 @@
-{
-  "timeInSec": 100,
+[{
+  "difficulty": "Easy",
+  "description": "Addition between single numbers",
+  "timeInSecPerQuestion": 40,
   "questions": [
     "2+2",
     "2+3",
@@ -19,4 +21,4 @@
     "8+3",
     "8+2"
   ]
-}
+}]
