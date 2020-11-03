@@ -22,6 +22,7 @@ import com.johanlund.mathgame.questionsProducer.QuestionsProducerImpl;
 import com.johanlund.mathgame.welcomePage.WelcomeFragment;
 import com.johanlund.mathgame.win.WinFragment;
 
+import static androidx.fragment.app.FragmentManager.POP_BACK_STACK_INCLUSIVE;
 import static com.johanlund.mathgame.common.Constants.INFO_ABOUT_LEVELS;
 import static com.johanlund.mathgame.common.Constants.LEVEL;
 import static com.johanlund.mathgame.common.Constants.NR_OF_LEVEL;
@@ -30,7 +31,7 @@ import static com.johanlund.mathgame.common.Constants.TAG_WELCOME_FRAGMENT;
 import static com.johanlund.mathgame.common.Constants.TAG_WINNER_FRAGMENT;
 
 public class MainActivity extends AppCompatActivity implements WelcomeFragment.Listener,OneLevelFragment.Listener {
-    private final int QUESTIONS_PER_LEVEL = 5;
+    private final int QUESTIONS_PER_LEVEL = 2;
     private int totNrOfLevels;
     private LevelInfo [] infoAboutLevels;
     private int currentLevel = 1;
@@ -46,10 +47,16 @@ public class MainActivity extends AppCompatActivity implements WelcomeFragment.L
         container = R.id.main_container;
         toolbar = getSupportActionBar();
 
+        //TODO: dagger injection
         QuestionsProducer qp = new QuestionsProducerImpl();
         totNrOfLevels = qp.getTotalNrOfLevels();
         infoAboutLevels = qp.getLevelInfos();
-        startWelcomePage();
+        if (savedInstanceState != null){
+            //fix currentLevel bla
+        }
+        else {
+            startWelcomePage();
+        }
     }
 
 
@@ -144,12 +151,14 @@ public class MainActivity extends AppCompatActivity implements WelcomeFragment.L
         toolbar.setDisplayHomeAsUpEnabled(true);
     }
 
-    //INNER CLASS handling Dialogs
+    //INNER CLASS handling Dialogs that will change level up or down
     private class OkDialog {
         private void startDialog(Context c, int title, int msg) {
             AlertDialog.Builder builder = new AlertDialog.Builder(c);
             builder.setPositiveButton(R.string.ok, (dialog, id) -> {
-                        startLevel();
+                getSupportFragmentManager().popBackStackImmediate(TAG_ONE_LEVEL_FRAGMENT,POP_BACK_STACK_INCLUSIVE);
+                startLevel();
+
                     }
             );
             final AlertDialog dialog = builder.setMessage(msg)
