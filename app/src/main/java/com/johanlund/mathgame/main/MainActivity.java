@@ -30,15 +30,16 @@ import static com.johanlund.mathgame.common.Constants.TAG_ONE_LEVEL_FRAGMENT;
 import static com.johanlund.mathgame.common.Constants.TAG_WELCOME_FRAGMENT;
 import static com.johanlund.mathgame.common.Constants.TAG_WINNER_FRAGMENT;
 
-public class MainActivity extends AppCompatActivity implements WelcomeFragment.Listener,OneLevelFragment.Listener {
+public class MainActivity extends AppCompatActivity implements WelcomeFragment.Listener, OneLevelFragment.Listener {
     private final int QUESTIONS_PER_LEVEL = 2;
     private int totNrOfLevels;
-    private LevelInfo [] infoAboutLevels;
+    private LevelInfo[] infoAboutLevels;
     private int currentLevel = 1;
     int container;
     ActionBar toolbar;
 
     final String TAG = getClass().getName();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.d(TAG, "inside onCreate");
@@ -51,14 +52,12 @@ public class MainActivity extends AppCompatActivity implements WelcomeFragment.L
         QuestionsProducer qp = new QuestionsProducerImpl();
         totNrOfLevels = qp.getTotalNrOfLevels();
         infoAboutLevels = qp.getLevelInfos();
-        if (savedInstanceState != null){
+        if (savedInstanceState != null) {
             //fix currentLevel bla
-        }
-        else {
+        } else {
             startWelcomePage();
         }
     }
-
 
 
     @Override
@@ -70,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements WelcomeFragment.L
                 getSupportFragmentManager().popBackStackImmediate();
 
                 //If we have reached start page => then no back arrow should be shown
-                if (getSupportFragmentManager().getFragments().size()<=1){
+                if (getSupportFragmentManager().getFragments().size() <= 1) {
                     toolbar.setDisplayHomeAsUpEnabled(false);
                 }
                 return true;
@@ -79,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements WelcomeFragment.L
         }
     }
 
-    private void startWelcomePage(){
+    private void startWelcomePage() {
         Bundle args = new Bundle();
         args.putSerializable(INFO_ABOUT_LEVELS, infoAboutLevels);
 
@@ -92,7 +91,7 @@ public class MainActivity extends AppCompatActivity implements WelcomeFragment.L
     }
 
     @Override
-    public void setCurrentLevel(int level){
+    public void setCurrentLevel(int level) {
         currentLevel = level;
     }
 
@@ -156,9 +155,8 @@ public class MainActivity extends AppCompatActivity implements WelcomeFragment.L
         private void startDialog(Context c, int title, int msg) {
             AlertDialog.Builder builder = new AlertDialog.Builder(c);
             builder.setPositiveButton(R.string.ok, (dialog, id) -> {
-                getSupportFragmentManager().popBackStackImmediate(TAG_ONE_LEVEL_FRAGMENT,POP_BACK_STACK_INCLUSIVE);
-                startLevel();
-
+                        getSupportFragmentManager().popBackStackImmediate(TAG_ONE_LEVEL_FRAGMENT, POP_BACK_STACK_INCLUSIVE);
+                        startLevel();
                     }
             );
             final AlertDialog dialog = builder.setMessage(msg)
