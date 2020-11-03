@@ -21,10 +21,11 @@
         android:id="@+id/levelChooser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="136dp"
-        android:layout_marginRight="30dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="112dp"
+        android:layout_marginRight="50dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/levelNr" />
 
@@ -44,7 +45,9 @@
         android:id="@+id/description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
         android:layout_marginTop="15dp"
+        android:layout_marginRight="40dp"
         android:text="Description"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -67,13 +70,12 @@
         android:id="@+id/sendBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="116dp"
         android:text="Start Game"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/levelChooser"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.232" />
 
     <TextView
         android:id="@+id/textView4"
