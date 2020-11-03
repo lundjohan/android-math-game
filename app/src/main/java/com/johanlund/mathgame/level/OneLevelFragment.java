@@ -14,7 +14,6 @@ import com.johanlund.mathgame.questionanswer.AnswerQuestionFragment;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 import static com.johanlund.mathgame.common.Constants.LEVEL;
 import static com.johanlund.mathgame.common.Constants.NR_OF_LEVEL;
@@ -25,13 +24,17 @@ public class OneLevelFragment extends Fragment implements AnswerQuestionFragment
 
     /*ref to QuestionAdapter could also be placed in view, but feels more naturally here as this is
     the controller.*/
-    QuestionAdapter questionsAdapter;
+    private QuestionAdapter questionsAdapter;
     private int nrOfTotalQuestions;
     private int correctAnswers = 0;
     private int levelNr;
-    private int startTimeMilliSec;
+    private long millisStartTime;
+    private long millisBeforeFinished;
     private CountDownTimer countDownTimer;
 
+    private final String ORIGINAL_TOTAL_QUESTIONS = "totalQuestions";
+    private final String MILLIS_BEFORE_TIMES_UP = "millisTimesUp";
+    private final String REMAINING_QUESTIONS = "remainingQuestions";
     private final String TAG = this.getClass().getName();
 
     @Override
@@ -39,36 +42,58 @@ public class OneLevelFragment extends Fragment implements AnswerQuestionFragment
                              Bundle savedInstanceState) {
         callback = (OneLevelFragment.Listener) getActivity();
         viewMvc = new OneLevelViewMvcImpl(inflater, container);
-
-
         Bundle args = getArguments();
-        if (args != null) {
+
+        //We need an ArrayList to be able to remove inside List
+        ArrayList<QuestionModel> qms;
+
+        //ORIENTATION CHANGE
+        if (savedInstanceState != null) {
+
+            //Time
+            millisStartTime = savedInstanceState.getLong(MILLIS_BEFORE_TIMES_UP);
+
+            //Questions List
+            qms = savedInstanceState.getParcelableArrayList(REMAINING_QUESTIONS);
+
+            //Score
+            nrOfTotalQuestions = savedInstanceState.getInt(ORIGINAL_TOTAL_QUESTIONS);
+            correctAnswers = nrOfTotalQuestions - qms.size();
+
+            //Level title
+            levelNr = savedInstanceState.getInt(NR_OF_LEVEL);
+        }
+
+        //FIRST INITIATION
+        else {
             //Level
             Level level = (Level) args.getSerializable(LEVEL);
 
-            //We need an ArrayList to be able to remove inside List
-            List<QuestionModel> qms =
-                    new ArrayList<QuestionModel>(Arrays.asList(level.getQuestions()));
-
-            questionsAdapter = new QuestionAdapter(this, qms);
-            viewMvc.createViewPager2(questionsAdapter);
-
-            //Level title
-            levelNr = args.getInt(NR_OF_LEVEL);
-            viewMvc.bindLevelTitleToView("LEVEL " + levelNr);
+            //Questions List
+            qms = new ArrayList<>(Arrays.asList(level.getQuestions()));
 
             //Score
             nrOfTotalQuestions = qms.size();
-            viewMvc.bindScoreToView(doScoreStr());
 
             //Time
-            startTimeMilliSec = level.getTimeInSecPerQuestion() * nrOfTotalQuestions * 1000;
+            millisStartTime = level.getTimeInSecPerQuestion() * nrOfTotalQuestions * 1000;
+            millisBeforeFinished = millisStartTime;
 
+            //Level title
+            levelNr = args.getInt(NR_OF_LEVEL);
         }
+
+        questionsAdapter = new QuestionAdapter(this, qms);
+        viewMvc.createViewPager2(questionsAdapter);
+
+        viewMvc.bindLevelTitleToView("LEVEL " + levelNr);
+        viewMvc.bindScoreToView(doScoreStr());
+
         final Fragment here = this;
-        countDownTimer = new CountDownTimer(startTimeMilliSec, 1000) {
+        countDownTimer = new CountDownTimer(millisStartTime, 1000) {
 
             public void onTick(long millisUntilFinished) {
+                millisBeforeFinished = millisUntilFinished;
                 viewMvc.bindTimeToView("" + millisUntilFinished / 1000);
             }
 
@@ -82,6 +107,14 @@ public class OneLevelFragment extends Fragment implements AnswerQuestionFragment
         }.start();
 
         return viewMvc.getRootView();
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle state) {
+        state.putInt(NR_OF_LEVEL, levelNr);
+        state.putInt(ORIGINAL_TOTAL_QUESTIONS, nrOfTotalQuestions);
+        state.putLong(MILLIS_BEFORE_TIMES_UP, millisBeforeFinished);
+        state.putParcelableArrayList(REMAINING_QUESTIONS, questionsAdapter.getQuestionModels());
     }
 
     @Override

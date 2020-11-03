@@ -53,10 +53,16 @@ public class MainActivity extends AppCompatActivity implements WelcomeFragment.L
         totNrOfLevels = qp.getTotalNrOfLevels();
         infoAboutLevels = qp.getLevelInfos();
         if (savedInstanceState != null) {
-            //fix currentLevel bla
+            currentLevel = savedInstanceState.getInt(NR_OF_LEVEL);
         } else {
             startWelcomePage();
         }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle out){
+        out.putInt(NR_OF_LEVEL, currentLevel);
+        super.onSaveInstanceState(out);
     }
 
 

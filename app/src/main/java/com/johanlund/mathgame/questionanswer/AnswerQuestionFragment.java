@@ -33,7 +33,7 @@ public class AnswerQuestionFragment extends Fragment implements AnswerQuestionVi
                              Bundle savedInstanceState) {
 
         Bundle args = getArguments();
-        QuestionModel qm = (QuestionModel) args.getSerializable(QUESTION_MODEL);
+        QuestionModel qm = (QuestionModel) args.getParcelable(QUESTION_MODEL);
         viewMvc = new AnswerQuestionViewMvcImpl(inflater, container);
         viewMvc.bindQuestionToView(qm);
         return viewMvc.getRootView();

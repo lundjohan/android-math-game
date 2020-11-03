@@ -11,6 +11,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import com.johanlund.mathgame.common.QuestionModel;
 import com.johanlund.mathgame.questionanswer.AnswerQuestionFragment;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.johanlund.mathgame.common.Constants.POSITION_IN_ADAPTER;
@@ -18,13 +19,13 @@ import static com.johanlund.mathgame.common.Constants.QUESTION_MODEL;
 
 //package private
 class QuestionAdapter extends FragmentStateAdapter {
-    List<QuestionModel> qms;
+    ArrayList<QuestionModel> qms;
 
     /**
      * @param fragment
      * @param qms      MUST be ArrayList (so elements can be removed inside)
      */
-    public QuestionAdapter(@NonNull Fragment fragment, List<QuestionModel> qms) {
+    public QuestionAdapter(@NonNull Fragment fragment, ArrayList<QuestionModel> qms) {
         super(fragment);
         this.qms = qms;
     }
@@ -39,7 +40,7 @@ class QuestionAdapter extends FragmentStateAdapter {
 
         //this is wrong
         args.putInt(POSITION_IN_ADAPTER, position);
-        args.putSerializable(QUESTION_MODEL, qms.get(position));
+        args.putParcelable(QUESTION_MODEL, qms.get(position));
         fragment.setArguments(args);
         return fragment;
     }
@@ -66,6 +67,9 @@ class QuestionAdapter extends FragmentStateAdapter {
             }
         }
         return false;
+    }
+    ArrayList<QuestionModel> getQuestionModels(){
+        return qms;
     }
 
     /**
