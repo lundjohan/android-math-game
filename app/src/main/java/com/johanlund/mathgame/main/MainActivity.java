@@ -31,7 +31,7 @@ import static com.johanlund.mathgame.common.Constants.TAG_WELCOME_FRAGMENT;
 import static com.johanlund.mathgame.common.Constants.TAG_WINNER_FRAGMENT;
 
 public class MainActivity extends AppCompatActivity implements WelcomeFragment.Listener, OneLevelFragment.Listener {
-    private final int QUESTIONS_PER_LEVEL = 1;
+    private final int QUESTIONS_PER_LEVEL = 8;
     private int totNrOfLevels;
     private LevelInfo[] infoAboutLevels;
     private int currentLevel = 1;
