@@ -54,6 +54,12 @@ public class MainActivity extends AppCompatActivity implements WelcomeFragment.L
         infoAboutLevels = qp.getLevelInfos();
         if (savedInstanceState != null) {
             currentLevel = savedInstanceState.getInt(NR_OF_LEVEL);
+
+            //All Fragments should be able to go back to start page (except for start page itself)
+            // (it's needed here because orientation change will otherwise remove it)
+            if (getSupportFragmentManager().getFragments().size() > 1) {
+                toolbar.setDisplayHomeAsUpEnabled(true);
+            }
         } else {
             startWelcomePage();
         }
