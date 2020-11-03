@@ -129,7 +129,7 @@
   {
     "difficulty": "Intermediate",
     "description": "Addition between double numbers",
-    "timeInSecPerQuestion": 4,
+    "timeInSecPerQuestion": 6,
     "questions": [
       "11+28",
       "16+36",
@@ -153,7 +153,7 @@
   {
     "difficulty": "Intermediate",
     "description": "Subtraction between double numbers",
-    "timeInSecPerQuestion": 4,
+    "timeInSecPerQuestion": 6,
     "questions": [
       "99-54",
       "93-76",
@@ -178,7 +178,7 @@
   {
     "difficulty": "Intermediate",
     "description": "Multiplication where one factor is between 24 and 13, and the other is 12 or less",
-    "timeInSecPerQuestion": 5,
+    "timeInSecPerQuestion": 8,
     "questions": [
       "24*12",
       "24*5",
@@ -207,7 +207,7 @@
   {
     "difficulty": "Intermediate",
     "description": "Level before as division",
-    "timeInSecPerQuestion": 5,
+    "timeInSecPerQuestion": 8,
     "questions": [
       "288/12",
       "120/5",
@@ -236,7 +236,7 @@
   {
     "difficulty": "Intermediate",
     "description": "Mixed Intermediate questions",
-    "timeInSecPerQuestion": 5,
+    "timeInSecPerQuestion": 8,
     "questions": [
       "16+36",
       "25+85",
@@ -263,7 +263,7 @@
   {
     "difficulty": "Hard",
     "description": "Addition between triple numbers",
-    "timeInSecPerQuestion": 4,
+    "timeInSecPerQuestion": 8,
     "questions": [
       "115+283",
       "164+369",
@@ -287,7 +287,7 @@
   {
     "difficulty": "Hard",
     "description": "Subtraction between triple numbers",
-    "timeInSecPerQuestion": 4,
+    "timeInSecPerQuestion": 8,
     "questions": [
       "996-548",
       "934-762",
@@ -312,7 +312,7 @@
   {
     "difficulty": "Hard",
     "description": "Multiplication where both factors are between 24 and 13",
-    "timeInSecPerQuestion": 6,
+    "timeInSecPerQuestion": 12,
     "questions": [
       "24*13",
       "24*18",
@@ -341,7 +341,7 @@
   {
     "difficulty": "Hard",
     "description": "Level before as division",
-    "timeInSecPerQuestion": 6,
+    "timeInSecPerQuestion": 12,
     "questions": [
       "312/13",
       "432/18",
@@ -370,7 +370,7 @@
   {
     "difficulty": "Hard",
     "description": "Mixed Hard questions",
-    "timeInSecPerQuestion": 5,
+    "timeInSecPerQuestion": 11,
     "questions": [
       "115+283",
       "191+637",
