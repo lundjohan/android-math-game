@@ -37,7 +37,7 @@ public class WelcomeFragment extends Fragment implements WelcomeViewMvc.Listener
 
         // levels start at 1
         int minSeekBar = 1;
-        //Levels go from 1 to n for example. But Seekbar goes from 0 to n-1, therefore +1.
+        //Levels go from 1 to n for example. But Seekbar goes from 0 to n-1.
         int maxSeekBar = infoAboutLevels.length - 1;
         viewMvc.getLevelChooser().setMax(maxSeekBar);
         viewMvc.getLevelChooser().setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -61,6 +61,16 @@ public class WelcomeFragment extends Fragment implements WelcomeViewMvc.Listener
         if (savedInstanceState != null) {
             int chosenLevel = savedInstanceState.getInt(CHOOSEN_LEVEL);
             viewMvc.getLevelChooser().setProgress(chosenLevel);
+        }
+        else{
+            // SeekBar::setProgress(0) seems to be disregarded (however setProgress(1) isn't),
+            // I guess setOnSeekBarListener only operate on CHANGE.
+            // we set views explicit instead
+            if (infoAboutLevels.length>0){
+                viewMvc.setLevelNrView(String.valueOf(1));
+                viewMvc.setDifficultyView(infoAboutLevels[0].getDifficulty());
+                viewMvc.setDescriptionView(infoAboutLevels[0].getDescription());
+            }
         }
         return viewMvc.getRootView();
     }
