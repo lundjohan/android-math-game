@@ -31,7 +31,7 @@ import static com.johanlund.mathgame.common.Constants.TAG_WELCOME_FRAGMENT;
 import static com.johanlund.mathgame.common.Constants.TAG_WINNER_FRAGMENT;
 
 public class MainActivity extends AppCompatActivity implements WelcomeFragment.Listener, OneLevelFragment.Listener {
-    private final int QUESTIONS_PER_LEVEL = 2;
+    private final int QUESTIONS_PER_LEVEL = 1;
     private int totNrOfLevels;
     private LevelInfo[] infoAboutLevels;
     private int currentLevel = 1;
@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity implements WelcomeFragment.L
 
             //android.R.id.home is the top back button
             case android.R.id.home:
-                getSupportFragmentManager().popBackStackImmediate();
+                getSupportFragmentManager().popBackStackImmediate(TAG_WELCOME_FRAGMENT,0);
 
                 //If we have reached start page => then no back arrow should be shown
                 if (getSupportFragmentManager().getFragments().size() <= 1) {
