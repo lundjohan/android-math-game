@@ -21,7 +21,7 @@ public class QuestionsProducerImpl implements QuestionsProducer {
         if (tmp == null) {
             return null;
         }
-        QuestionModel []questions = tmp.getQuestions();
+        QuestionModel[] questions = tmp.getQuestions();
 
         //randomize
         Collections.shuffle(Arrays.asList(questions));
@@ -44,7 +44,7 @@ public class QuestionsProducerImpl implements QuestionsProducer {
     @Override
     public LevelInfo[] getLevelInfos() {
         Database database = DaggerLevelDatabaseFactory.create().database();
-        LevelInfo [] levelInfos = database.getLevelInfos();
+        LevelInfo[] levelInfos = database.getLevelInfos();
         return levelInfos;
     }
 }

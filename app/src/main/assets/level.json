@@ -1,24 +1,26 @@
-[{
-  "difficulty": "Easy",
-  "description": "Addition between single numbers",
-  "timeInSecPerQuestion": 40,
-  "questions": [
-    "2+2",
-    "2+3",
-    "2+4",
-    "2+5",
-    "2+6",
-    "3+7",
-    "3+8",
-    "3+9",
-    "4+2",
-    "4+7",
-    "4+8",
-    "4+9",
-    "6+7",
-    "6+8",
-    "6+9",
-    "8+3",
-    "8+2"
-  ]
-}]
+[
+  {
+    "difficulty": "Easy",
+    "description": "Addition between single numbers",
+    "timeInSecPerQuestion": 40,
+    "questions": [
+      "2+2",
+      "2+3",
+      "2+4",
+      "2+5",
+      "2+6",
+      "3+7",
+      "3+8",
+      "3+9",
+      "4+2",
+      "4+7",
+      "4+8",
+      "4+9",
+      "6+7",
+      "6+8",
+      "6+9",
+      "8+3",
+      "8+2"
+    ]
+  }
+]

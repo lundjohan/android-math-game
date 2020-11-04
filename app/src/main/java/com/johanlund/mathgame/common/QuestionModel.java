@@ -3,8 +3,6 @@ package com.johanlund.mathgame.common;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.io.Serializable;
-
 //immutable class
 public class QuestionModel implements Parcelable {
     private final int left;
@@ -59,6 +57,7 @@ public class QuestionModel implements Parcelable {
         dest.writeInt(right);
         dest.writeInt((int) operator);
     }
+
     @Override
     public String toString() {
         return "" + left + " " + operator + " " + right;

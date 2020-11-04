@@ -43,7 +43,7 @@ public class WelcomeViewMvcImpl implements WelcomeViewMvc {
     }
 
     @Override
-    public SeekBar getLevelChooser(){
+    public SeekBar getLevelChooser() {
         return levelChooser;
     }
 

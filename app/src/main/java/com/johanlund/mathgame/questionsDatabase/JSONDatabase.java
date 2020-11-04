@@ -1,7 +1,6 @@
 package com.johanlund.mathgame.questionsDatabase;
 
 import android.content.res.AssetManager;
-import android.util.Log;
 
 import com.google.gson.Gson;
 import com.johanlund.mathgame.common.Level;
@@ -39,7 +38,7 @@ public class JSONDatabase implements Database {
             //Json level starting at 0, but this API counts on levels starting at 1.
             toReturn = levelModels[nr - 1].toLevel();
         } catch (IndexOutOfBoundsException e) {
-          }
+        }
         return toReturn;
     }
 
@@ -50,9 +49,9 @@ public class JSONDatabase implements Database {
 
     @Override
     public LevelInfo[] getLevelInfos() {
-        LevelModel [] levelModels = getLevelModels();
-        LevelInfo [] levelInfos = new LevelInfo[levelModels.length];
-        for (int i = 0;i<levelModels.length;i++){
+        LevelModel[] levelModels = getLevelModels();
+        LevelInfo[] levelInfos = new LevelInfo[levelModels.length];
+        for (int i = 0; i < levelModels.length; i++) {
             levelInfos[i] = levelModels[i].toLevelInfo();
         }
         return levelInfos;

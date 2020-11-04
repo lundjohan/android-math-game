@@ -2,7 +2,6 @@ package com.johanlund.mathgame.level;
 
 
 import android.os.Bundle;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -12,7 +11,6 @@ import com.johanlund.mathgame.common.QuestionModel;
 import com.johanlund.mathgame.questionanswer.AnswerQuestionFragment;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import static com.johanlund.mathgame.common.Constants.POSITION_IN_ADAPTER;
 import static com.johanlund.mathgame.common.Constants.QUESTION_MODEL;
@@ -67,7 +65,8 @@ class QuestionAdapter extends FragmentStateAdapter {
         }
         return false;
     }
-    ArrayList<QuestionModel> getQuestionModels(){
+
+    ArrayList<QuestionModel> getQuestionModels() {
         return qms;
     }
 

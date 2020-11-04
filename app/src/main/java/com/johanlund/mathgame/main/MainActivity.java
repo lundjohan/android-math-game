@@ -2,7 +2,6 @@ package com.johanlund.mathgame.main;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -65,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements WelcomeFragment.L
     }
 
     @Override
-    public void onSaveInstanceState(Bundle out){
+    public void onSaveInstanceState(Bundle out) {
         out.putInt(NR_OF_LEVEL, currentLevel);
         super.onSaveInstanceState(out);
     }
@@ -77,7 +76,7 @@ public class MainActivity extends AppCompatActivity implements WelcomeFragment.L
 
             //android.R.id.home is the top back button
             case android.R.id.home:
-                getSupportFragmentManager().popBackStackImmediate(TAG_WELCOME_FRAGMENT,0);
+                getSupportFragmentManager().popBackStackImmediate(TAG_WELCOME_FRAGMENT, 0);
 
                 //If we have reached start page => then no back arrow should be shown
                 if (getSupportFragmentManager().getFragments().size() <= 1) {

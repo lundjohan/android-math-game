@@ -25,7 +25,7 @@ public class JSONDatabaseTest {
     JSONDatabase jsonDatabase;
 
     @Before
-    public void initiateJSONDatabase(){
+    public void initiateJSONDatabase() {
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
         jsonDatabase = new JSONDatabase(appContext.getAssets());
     }

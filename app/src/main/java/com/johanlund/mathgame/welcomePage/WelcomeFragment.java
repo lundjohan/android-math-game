@@ -1,7 +1,6 @@
 package com.johanlund.mathgame.welcomePage;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +19,7 @@ public class WelcomeFragment extends Fragment implements WelcomeViewMvc.Listener
     private LevelInfo[] infoAboutLevels;
     private WelcomeViewMvc viewMvc;
     final String TAG = getClass().getName();
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,12 +60,11 @@ public class WelcomeFragment extends Fragment implements WelcomeViewMvc.Listener
         if (savedInstanceState != null) {
             int chosenLevel = savedInstanceState.getInt(CHOOSEN_LEVEL);
             viewMvc.getLevelChooser().setProgress(chosenLevel);
-        }
-        else{
+        } else {
             // SeekBar::setProgress(0) seems to be disregarded (however setProgress(1) isn't),
             // I guess setOnSeekBarListener only operate on CHANGE.
             // we set views explicit instead
-            if (infoAboutLevels.length>0){
+            if (infoAboutLevels.length > 0) {
                 viewMvc.setLevelNrView(String.valueOf(1));
                 viewMvc.setDifficultyView(infoAboutLevels[0].getDifficulty());
                 viewMvc.setDescriptionView(infoAboutLevels[0].getDescription());
@@ -82,12 +81,13 @@ public class WelcomeFragment extends Fragment implements WelcomeViewMvc.Listener
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
-        outState.putInt(CHOOSEN_LEVEL,Integer.valueOf(viewMvc.retrieveLevelNrFromView()));
+        outState.putInt(CHOOSEN_LEVEL, Integer.valueOf(viewMvc.retrieveLevelNrFromView()));
         super.onSaveInstanceState(outState);
     }
 
     public interface Listener {
         void setCurrentLevel(int level);
+
         void startGame();
     }
 }

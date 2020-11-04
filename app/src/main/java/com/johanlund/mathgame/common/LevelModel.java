@@ -35,7 +35,8 @@ public class LevelModel {
         }
         return new Level(qs, timeInSecPerQuestion);
     }
-    public LevelInfo toLevelInfo(){
+
+    public LevelInfo toLevelInfo() {
         return new LevelInfo(difficulty, description);
     }
 }
