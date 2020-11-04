@@ -1,6 +1,20 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        debug {
+            storeFile file('/home/johan/keystore.jks')
+            storePassword 'Nansen22'
+            keyAlias 'Johan'
+            keyPassword 'Nansen22'
+        }
+        release {
+            storeFile file('/home/johan/keystore.jks')
+            storePassword 'Nansen22'
+            keyAlias 'Johan'
+            keyPassword 'Nansen22'
+        }
+    }
     compileSdkVersion 30
     buildToolsVersion "30.0.2"
     aaptOptions {
@@ -21,6 +35,9 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            signingConfig signingConfigs.debug
         }
     }
     compileOptions {
