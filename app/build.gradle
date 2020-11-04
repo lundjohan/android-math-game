@@ -3,15 +3,15 @@ apply plugin: 'com.android.application'
 android {
     signingConfigs {
         debug {
-            storeFile file('/home/johan/keystore.jks')
+            storeFile file('/home/johan/keystore/keystore.jks')
             storePassword 'Nansen22'
-            keyAlias 'Johan'
+            keyAlias 'math_game'
             keyPassword 'Nansen22'
         }
         release {
-            storeFile file('/home/johan/keystore.jks')
+            storeFile file('/home/johan/keystore/keystore.jks')
             storePassword 'Nansen22'
-            keyAlias 'Johan'
+            keyAlias 'math_game'
             keyPassword 'Nansen22'
         }
     }
@@ -29,6 +29,7 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        signingConfig signingConfigs.debug
     }
 
     buildTypes {
