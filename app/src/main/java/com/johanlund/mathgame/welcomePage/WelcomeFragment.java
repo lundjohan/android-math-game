@@ -24,7 +24,6 @@ public class WelcomeFragment extends Fragment implements WelcomeViewMvc.Listener
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         callback = (Listener) getActivity();
-        Log.d(TAG, "inside onCreate");
     }
 
     @Override

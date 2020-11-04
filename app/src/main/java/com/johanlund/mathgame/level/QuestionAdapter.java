@@ -33,7 +33,6 @@ class QuestionAdapter extends FragmentStateAdapter {
     @NonNull
     @Override
     public Fragment createFragment(int position) {
-        Log.d("QUESTION_ADAPTER", "" + position);
         // Return a NEW fragment instance in createFragment(int)
         Fragment fragment = new AnswerQuestionFragment();
         Bundle args = new Bundle();

@@ -39,10 +39,7 @@ public class JSONDatabase implements Database {
             //Json level starting at 0, but this API counts on levels starting at 1.
             toReturn = levelModels[nr - 1].toLevel();
         } catch (IndexOutOfBoundsException e) {
-            Log.e(TAG, "Inside getLevel. " +
-                    "Index is higher than the arrays elements, null will be returned");
-
-        }
+          }
         return toReturn;
     }
 
@@ -69,8 +66,6 @@ public class JSONDatabase implements Database {
             Reader reader = new InputStreamReader(stream, "UTF-8");
             levelModels = gson.fromJson(reader, LevelModel[].class);
         } catch (IOException e) {
-            Log.e(TAG, e.toString() +
-                    "Something is wrong with reading from JSON file. Null will be returned.");
         }
         return levelModels;
     }

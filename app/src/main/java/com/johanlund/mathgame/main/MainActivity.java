@@ -42,7 +42,6 @@ public class MainActivity extends AppCompatActivity implements WelcomeFragment.L
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.d(TAG, "inside onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         container = R.id.main_container;
