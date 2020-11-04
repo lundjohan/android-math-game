@@ -22,7 +22,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.example.mathgame"
+        applicationId 'com.johanlund.mathgame'
         minSdkVersion 16
         targetSdkVersion 30
         versionCode 1
