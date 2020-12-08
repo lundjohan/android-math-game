@@ -1,4 +1,4 @@
-package com.johanlund.mathgame.welcomePage;
+package com.johanlund.mathgame.screens.welcomePage;
 
 import android.view.LayoutInflater;
 import android.view.View;

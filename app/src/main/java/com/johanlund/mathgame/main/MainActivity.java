@@ -18,8 +18,8 @@ import com.johanlund.mathgame.common.LevelInfo;
 import com.johanlund.mathgame.level.OneLevelFragment;
 import com.johanlund.mathgame.questionsProducer.QuestionsProducer;
 import com.johanlund.mathgame.questionsProducer.QuestionsProducerImpl;
-import com.johanlund.mathgame.welcomePage.WelcomeFragment;
-import com.johanlund.mathgame.win.WinFragment;
+import com.johanlund.mathgame.screens.welcomePage.WelcomeFragment;
+import com.johanlund.mathgame.screens.win.WinFragment;
 
 import static androidx.fragment.app.FragmentManager.POP_BACK_STACK_INCLUSIVE;
 import static com.johanlund.mathgame.common.Constants.INFO_ABOUT_LEVELS;

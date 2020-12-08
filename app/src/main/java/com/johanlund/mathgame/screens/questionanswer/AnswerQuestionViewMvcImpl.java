@@ -1,4 +1,4 @@
-package com.johanlund.mathgame.questionanswer;
+package com.johanlund.mathgame.screens.questionanswer;
 
 import android.content.res.Configuration;
 import android.graphics.Color;

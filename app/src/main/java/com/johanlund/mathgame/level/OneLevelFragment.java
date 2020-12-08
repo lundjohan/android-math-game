@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment;
 
 import com.johanlund.mathgame.common.Level;
 import com.johanlund.mathgame.common.QuestionModel;
-import com.johanlund.mathgame.questionanswer.AnswerQuestionFragment;
+import com.johanlund.mathgame.screens.questionanswer.AnswerQuestionFragment;
 
 import java.util.ArrayList;
 import java.util.Arrays;

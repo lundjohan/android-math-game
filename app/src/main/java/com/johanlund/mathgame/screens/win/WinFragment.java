@@ -1,4 +1,4 @@
-package com.johanlund.mathgame.win;
+package com.johanlund.mathgame.screens.win;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

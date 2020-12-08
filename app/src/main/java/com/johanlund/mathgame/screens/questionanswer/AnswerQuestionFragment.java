@@ -1,4 +1,4 @@
-package com.johanlund.mathgame.questionanswer;
+package com.johanlund.mathgame.screens.questionanswer;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
