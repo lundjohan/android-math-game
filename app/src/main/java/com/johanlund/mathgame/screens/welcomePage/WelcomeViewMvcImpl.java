@@ -19,7 +19,7 @@ public class WelcomeViewMvcImpl implements WelcomeViewMvc {
     private SeekBar levelChooser;
 
     public WelcomeViewMvcImpl(WelcomeViewMvc.Listener listener, LayoutInflater inflater, ViewGroup container) {
-        view = inflater.inflate(R.layout.fragment_welcome_fragment, container, false);
+        view = inflater.inflate(R.layout.fragment_welcome, container, false);
         callback = listener;
         levelNrView = view.findViewById(R.id.levelNr);
         difficultyView = view.findViewById(R.id.difficulty);
