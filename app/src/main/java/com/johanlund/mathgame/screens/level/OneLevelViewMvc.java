@@ -1,4 +1,4 @@
-package com.johanlund.mathgame.level;
+package com.johanlund.mathgame.screens.level;
 
 import com.johanlund.mathgame.common.ViewMvc;
 

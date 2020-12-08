@@ -1,4 +1,4 @@
-package com.johanlund.mathgame.level;
+package com.johanlund.mathgame.screens.level;
 
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment;
 
 import com.johanlund.mathgame.common.Level;
 import com.johanlund.mathgame.common.QuestionModel;
-import com.johanlund.mathgame.screens.questionanswer.AnswerQuestionFragment;
+import com.johanlund.mathgame.screens.level.questionanswer.AnswerQuestionFragment;
 
 import java.util.ArrayList;
 import java.util.Arrays;
