@@ -8,14 +8,15 @@ import android.widget.SeekBar;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.johanlund.mathgame.common.LevelInfo;
+import com.johanlund.mathgame.questionsProducer.QuestionsProducer;
+import com.johanlund.mathgame.questionsProducer.QuestionsProducerImpl;
 
 import static com.johanlund.mathgame.common.Constants.CHOOSEN_LEVEL;
-import static com.johanlund.mathgame.common.Constants.INFO_ABOUT_LEVELS;
 
 public class WelcomeFragment extends Fragment implements WelcomeViewMvc.Listener {
-    private Listener callback;
     private LevelInfo[] infoAboutLevels;
     private WelcomeViewMvc viewMvc;
     final String TAG = getClass().getName();
@@ -23,14 +24,14 @@ public class WelcomeFragment extends Fragment implements WelcomeViewMvc.Listener
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        callback = (Listener) getActivity();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Bundle args = getArguments();
-        infoAboutLevels = (LevelInfo[]) args.getSerializable(INFO_ABOUT_LEVELS);
+        //TODO dagger injection
+        QuestionsProducer qp = new QuestionsProducerImpl();
+        infoAboutLevels = qp.getLevelInfos();
 
         viewMvc = new WelcomeViewMvcImpl(this, inflater, container);
 
@@ -75,19 +76,15 @@ public class WelcomeFragment extends Fragment implements WelcomeViewMvc.Listener
 
     @Override
     public void startPressed() {
-        callback.setCurrentLevel(Integer.valueOf(viewMvc.retrieveLevelNrFromView()));
-        callback.startGame();
+        int chosenLevel = Integer.valueOf(viewMvc.retrieveLevelNrFromView());
+        WelcomeFragmentDirections.ActionWelcomeToLevel action = WelcomeFragmentDirections.actionWelcomeToLevel();
+        action.setLevelNr(chosenLevel);
+        NavHostFragment.findNavController(this).navigate(action);
     }
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         outState.putInt(CHOOSEN_LEVEL, Integer.valueOf(viewMvc.retrieveLevelNrFromView()));
         super.onSaveInstanceState(outState);
-    }
-
-    public interface Listener {
-        void setCurrentLevel(int level);
-
-        void startGame();
     }
 }

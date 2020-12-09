@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav"
+    app:startDestination="@id/welcomeDestination">
+
+    <fragment
+        android:id="@+id/welcomeDestination"
+        android:name="com.johanlund.mathgame.screens.welcomePage.WelcomeFragment"
+        android:label="WelcomeFragment"
+        tools:layout="@layout/fragment_welcome">
+        <action
+            android:id="@+id/action_welcome_to_level"
+            app:destination="@id/levelDestination" />
+    </fragment>
+    <fragment
+        android:id="@+id/levelDestination"
+        android:name="com.johanlund.mathgame.screens.level.OneLevelFragment"
+        android:label="OneLevelFragment"
+        tools:layout="@layout/fragment_one_level">
+        <action
+            android:id="@+id/action_level_to_win"
+            app:destination="@id/winDestination"
+            app:popUpTo="@id/welcomeDestination" />
+        <argument
+            android:name="level_nr"
+            android:defaultValue="1"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_level_to_level"
+            app:destination="@id/levelDestination" />
+    </fragment>
+    <fragment
+        android:id="@+id/winDestination"
+        android:name="com.johanlund.mathgame.screens.win.WinFragment"
+        android:label="WinFragment"
+        tools:layout="@layout/fragment_win">
+        <action
+            android:id="@+id/action_win_to_welcome"
+            app:destination="@id/welcomeDestination"
+            app:popUpTo="@id/welcomeDestination" />
+    </fragment>
+</navigation>

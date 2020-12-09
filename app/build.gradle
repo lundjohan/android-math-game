@@ -1,13 +1,8 @@
 apply plugin: 'com.android.application'
+apply plugin: "androidx.navigation.safeargs"
 
 android {
     signingConfigs {
-        debug {
-            storeFile file('/home/johan/keystore/keystore.jks')
-            storePassword 'Nansen22'
-            keyAlias 'math_game'
-            keyPassword 'Nansen22'
-        }
         release {
             storeFile file('/home/johan/keystore/keystore.jks')
             storePassword 'Nansen22'
@@ -38,7 +33,8 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         debug {
-            signingConfig signingConfigs.debug
+            applicationIdSuffix ".debug"
+            debuggable true
         }
     }
     compileOptions {
@@ -70,4 +66,8 @@ dependencies {
     api group: 'javax.annotation', name: 'javax.annotation-api', version: '1.2-b01'
     api 'com.google.dagger:dagger:2.29'
     annotationProcessor 'com.google.dagger:dagger-compiler:2.29'
+
+    // Navigation
+    implementation "android.arch.navigation:navigation-fragment-ktx:1.0.0-rc02"
+    implementation "android.arch.navigation:navigation-ui-ktx:1.0.0-rc02"
 }

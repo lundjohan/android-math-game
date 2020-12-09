@@ -1,4 +1,4 @@
-package com.johanlund.mathgame.screens.level.questionanswer;
+package com.johanlund.mathgame.screens.questionanswer;
 
 import com.johanlund.mathgame.common.QuestionModel;
 import com.johanlund.mathgame.common.ViewMvc;
