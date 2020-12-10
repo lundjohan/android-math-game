@@ -15,7 +15,7 @@ import java.io.Reader;
 import javax.inject.Inject;
 
 public class JSONDatabase implements Database {
-    private final String FILENAME = "levels.json";
+    private final String FILENAME = "levels_test.json";
     private AssetManager assetManager;
     private final String TAG = "JSONDatabase";
 

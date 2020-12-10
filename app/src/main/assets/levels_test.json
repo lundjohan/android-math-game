@@ -1,0 +1,20 @@
+[
+  {
+    "difficulty": "Easy",
+    "description": "Addition between single numbers",
+    "timeInSecPerQuestion": 4,
+    "questions": [
+      "2+3",
+      "2+4"
+    ]
+  },
+  {
+    "difficulty": "Easy",
+    "description": "Subtraction between single numbers",
+    "timeInSecPerQuestion": 4,
+    "questions": [
+      "4-2",
+      "4-3"
+    ]
+  }
+]
