@@ -13,8 +13,8 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.johanlund.mathgame.R;
-import com.johanlund.mathgame.common.Level;
-import com.johanlund.mathgame.common.QuestionModel;
+import com.johanlund.mathgame.common.models.Level;
+import com.johanlund.mathgame.common.models.QuestionModel;
 import com.johanlund.mathgame.questionsProducer.QuestionsProducer;
 import com.johanlund.mathgame.questionsProducer.QuestionsProducerImpl;
 import com.johanlund.mathgame.screens.questionanswer.AnswerQuestionFragment;

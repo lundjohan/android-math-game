@@ -1,7 +1,7 @@
 package com.johanlund.mathgame.questionsDatabase;
 
-import com.johanlund.mathgame.common.Level;
-import com.johanlund.mathgame.common.LevelInfo;
+import com.johanlund.mathgame.common.models.Level;
+import com.johanlund.mathgame.common.models.LevelInfo;
 
 public interface Database {
     /**

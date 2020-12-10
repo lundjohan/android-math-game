@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
-import com.johanlund.mathgame.common.LevelInfo;
+import com.johanlund.mathgame.common.models.LevelInfo;
 import com.johanlund.mathgame.questionsProducer.QuestionsProducer;
 import com.johanlund.mathgame.questionsProducer.QuestionsProducerImpl;
 

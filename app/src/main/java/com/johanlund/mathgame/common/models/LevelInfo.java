@@ -1,4 +1,4 @@
-package com.johanlund.mathgame.common;
+package com.johanlund.mathgame.common.models;
 
 import java.io.Serializable;
 

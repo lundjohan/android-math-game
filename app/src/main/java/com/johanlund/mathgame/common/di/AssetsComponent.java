@@ -1,4 +1,4 @@
-package com.johanlund.mathgame.main;
+package com.johanlund.mathgame.common.di;
 
 import android.content.res.AssetManager;
 

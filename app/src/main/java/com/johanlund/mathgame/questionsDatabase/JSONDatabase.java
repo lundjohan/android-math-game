@@ -3,9 +3,9 @@ package com.johanlund.mathgame.questionsDatabase;
 import android.content.res.AssetManager;
 
 import com.google.gson.Gson;
-import com.johanlund.mathgame.common.Level;
-import com.johanlund.mathgame.common.LevelInfo;
-import com.johanlund.mathgame.common.LevelModel;
+import com.johanlund.mathgame.common.models.Level;
+import com.johanlund.mathgame.common.models.LevelInfo;
+import com.johanlund.mathgame.common.models.LevelModel;
 
 import java.io.IOException;
 import java.io.InputStream;

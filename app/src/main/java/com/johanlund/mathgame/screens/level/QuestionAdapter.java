@@ -7,7 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import com.johanlund.mathgame.common.QuestionModel;
+import com.johanlund.mathgame.common.models.QuestionModel;
 import com.johanlund.mathgame.screens.questionanswer.AnswerQuestionFragment;
 
 import java.util.ArrayList;

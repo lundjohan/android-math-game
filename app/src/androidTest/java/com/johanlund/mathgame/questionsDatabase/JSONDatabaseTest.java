@@ -5,8 +5,8 @@ import android.content.Context;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
 
-import com.johanlund.mathgame.common.Level;
-import com.johanlund.mathgame.common.QuestionModel;
+import com.johanlund.mathgame.common.models.Level;
+import com.johanlund.mathgame.common.models.QuestionModel;
 
 import org.junit.Before;
 import org.junit.Test;

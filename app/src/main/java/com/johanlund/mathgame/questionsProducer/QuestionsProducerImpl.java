@@ -1,8 +1,8 @@
 package com.johanlund.mathgame.questionsProducer;
 
-import com.johanlund.mathgame.common.Level;
-import com.johanlund.mathgame.common.LevelInfo;
-import com.johanlund.mathgame.common.QuestionModel;
+import com.johanlund.mathgame.common.models.Level;
+import com.johanlund.mathgame.common.models.LevelInfo;
+import com.johanlund.mathgame.common.models.QuestionModel;
 import com.johanlund.mathgame.questionsDatabase.DaggerLevelDatabaseFactory;
 import com.johanlund.mathgame.questionsDatabase.Database;
 

@@ -1,6 +1,6 @@
 package com.johanlund.mathgame.util;
 
-import com.johanlund.mathgame.common.QuestionModel;
+import com.johanlund.mathgame.common.models.QuestionModel;
 
 public class Util {
 

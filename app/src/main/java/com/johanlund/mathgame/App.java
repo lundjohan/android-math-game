@@ -2,8 +2,8 @@ package com.johanlund.mathgame;
 
 import android.app.Application;
 
-import com.johanlund.mathgame.main.AssetManagerModule;
-import com.johanlund.mathgame.main.DaggerAssetsComponent;
+import com.johanlund.mathgame.common.di.AssetManagerModule;
+import com.johanlund.mathgame.common.di.DaggerAssetsComponent;
 
 public class App extends Application {
 

@@ -1,6 +1,6 @@
 package com.johanlund.mathgame.questionsDatabase;
 
-import com.johanlund.mathgame.main.AssetManagerModule;
+import com.johanlund.mathgame.common.di.AssetManagerModule;
 
 import dagger.Component;
 
