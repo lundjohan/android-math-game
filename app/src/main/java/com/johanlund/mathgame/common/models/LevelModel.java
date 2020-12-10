@@ -1,7 +1,5 @@
 package com.johanlund.mathgame.common.models;
 
-import com.johanlund.mathgame.util.Util;
-
 /**
  * uses:
  * works like a bridge between json-file and Level.class
@@ -31,7 +29,7 @@ public class LevelModel {
     public Level toLevel() {
         QuestionModel qs[] = new QuestionModel[questions.length];
         for (int i = 0; i < qs.length; i++) {
-            qs[i] = Util.strToQuestionModel(questions[i]);
+            qs[i] = QuestionModel.strToQuestionModel(questions[i]);
         }
         return new Level(qs, timeInSecPerQuestion);
     }
