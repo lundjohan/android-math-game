@@ -11,8 +11,8 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.johanlund.mathgame.common.models.LevelInfo;
+import com.johanlund.mathgame.questionsProducer.DaggerQuestionsProducerFactory;
 import com.johanlund.mathgame.questionsProducer.QuestionsProducer;
-import com.johanlund.mathgame.questionsProducer.QuestionsProducerImpl;
 
 import static com.johanlund.mathgame.common.Constants.CHOOSEN_LEVEL;
 
@@ -29,8 +29,7 @@ public class WelcomeFragment extends Fragment implements WelcomeViewMvc.Listener
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        //TODO dagger injection
-        QuestionsProducer qp = new QuestionsProducerImpl();
+        QuestionsProducer qp = DaggerQuestionsProducerFactory.create().questionsProducer();
         infoAboutLevels = qp.getLevelInfos();
 
         viewMvc = new WelcomeViewMvcImpl(this, inflater, container);

@@ -15,6 +15,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.johanlund.mathgame.R;
 import com.johanlund.mathgame.common.models.Level;
 import com.johanlund.mathgame.common.models.QuestionModel;
+import com.johanlund.mathgame.questionsProducer.DaggerQuestionsProducerFactory;
 import com.johanlund.mathgame.questionsProducer.QuestionsProducer;
 import com.johanlund.mathgame.questionsProducer.QuestionsProducerImpl;
 import com.johanlund.mathgame.screens.questionanswer.AnswerQuestionFragment;
@@ -88,12 +89,11 @@ public class OneLevelFragment extends Fragment implements AnswerQuestionFragment
     private void initiateLevel() {
         initiateLevelPartOne();
         initiateLevelPartTwo();
-
     }
 
     private void initiateLevelPartOne() {
         //retrieve a level
-        QuestionsProducer qp = new QuestionsProducerImpl();
+        QuestionsProducer qp = DaggerQuestionsProducerFactory.create().questionsProducer();
         Level level = qp.getLevel(currentLevel, QUESTIONS_PER_LEVEL);
         totNrOfLevels = qp.getTotalNrOfLevels();
 

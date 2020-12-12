@@ -9,7 +9,12 @@ import com.johanlund.mathgame.questionsDatabase.Database;
 import java.util.Arrays;
 import java.util.Collections;
 
+import javax.inject.Inject;
+
 public class QuestionsProducerImpl implements QuestionsProducer {
+
+    @Inject
+    public QuestionsProducerImpl(){}
     /**
      * @param level must be >= 1
      * @return Level if it exists, otwerwise null.
