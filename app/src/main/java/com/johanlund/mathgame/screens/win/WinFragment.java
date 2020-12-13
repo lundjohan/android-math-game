@@ -29,6 +29,7 @@ public class WinFragment extends Fragment {
         binding.setWinViewModel(viewModel);
         binding.setLifecycleOwner(this);
 
+
         viewModel.isGameFinished().observe(getViewLifecycleOwner(), isFinished -> {
             if (isFinished) {
                 int action = WinFragmentDirections.actionWinToWelcome().getActionId();

@@ -7,44 +7,37 @@ import android.view.ViewGroup;
 import android.widget.SeekBar;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 
-import com.johanlund.mathgame.common.models.LevelInfo;
-import com.johanlund.mathgame.questionsProducer.DaggerQuestionsProducerFactory;
-import com.johanlund.mathgame.questionsProducer.QuestionsProducer;
+import com.johanlund.mathgame.R;
+import com.johanlund.mathgame.databinding.FragmentWelcomeBinding;
 
-import static com.johanlund.mathgame.common.Constants.CHOOSEN_LEVEL;
+public class WelcomeFragment extends Fragment {
+    private WelcomeViewModel viewModel;
 
-public class WelcomeFragment extends Fragment implements WelcomeViewMvc.Listener {
-    private LevelInfo[] infoAboutLevels;
-    private WelcomeViewMvc viewMvc;
-    final String TAG = getClass().getName();
-
+    @Nullable
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        FragmentWelcomeBinding binding = DataBindingUtil.inflate(
+                inflater, R.layout.fragment_welcome, container, false);
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        QuestionsProducer qp = DaggerQuestionsProducerFactory.create().questionsProducer();
-        infoAboutLevels = qp.getLevelInfos();
+        // Get the viewmodel
+        viewModel = new ViewModelProvider(this).get(WelcomeViewModel.class);
 
-        viewMvc = new WelcomeViewMvcImpl(this, inflater, container);
+        //two lines necessary for binding to work
+        binding.setWelcomeViewModel(viewModel);
+        binding.setLifecycleOwner(this);
 
-        // levels start at 1
-        int minSeekBar = 1;
-        //Levels go from 1 to n for example. But Seekbar goes from 0 to n-1.
-        int maxSeekBar = infoAboutLevels.length - 1;
-        viewMvc.getLevelChooser().setMax(maxSeekBar);
-        viewMvc.getLevelChooser().setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        //binding.levelChooser.setMin(1);
+        binding.levelChooser.setMax(Integer.valueOf(viewModel.getNrOfLastLevel()));
+        binding.levelChooser.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+
             @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                viewMvc.setLevelNrView(String.valueOf(progress + minSeekBar));
-                viewMvc.setDifficultyView(infoAboutLevels[progress].getDifficulty());
-                viewMvc.setDescriptionView(infoAboutLevels[progress].getDescription());
+            public void onStopTrackingTouch(SeekBar seekBar) {
             }
 
             @Override
@@ -52,11 +45,30 @@ public class WelcomeFragment extends Fragment implements WelcomeViewMvc.Listener
             }
 
             @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
+            public void onProgressChanged(SeekBar seekBar, int progress,boolean fromUser) {
+                viewModel.onSeekBarChange(progress);
 
             }
         });
 
+        //Seekbar only operates on change, and no event is fired if it hasn't change, which we need at start
+        if (viewModel.getChosenLevel().getValue() == "1") {
+            viewModel.onSeekBarChange(0);
+        }
+
+        viewModel.isStartGamePressed().observe(getViewLifecycleOwner(), isPressed -> {
+            if (isPressed) {
+                String chosenLevel = viewModel.getChosenLevel().getValue();
+                WelcomeFragmentDirections.ActionWelcomeToLevel action = WelcomeFragmentDirections.actionWelcomeToLevel();
+                action.setLevelNr(Integer.valueOf(chosenLevel));
+                NavHostFragment.findNavController(this).navigate(action);
+            }
+        });
+        return binding.getRoot();
+    }
+}
+
+/*
         if (savedInstanceState != null) {
             int chosenLevel = savedInstanceState.getInt(CHOOSEN_LEVEL);
             viewMvc.getLevelChooser().setProgress(chosenLevel);
@@ -70,20 +82,10 @@ public class WelcomeFragment extends Fragment implements WelcomeViewMvc.Listener
                 viewMvc.setDescriptionView(infoAboutLevels[0].getDescription());
             }
         }
-        return viewMvc.getRootView();
-    }
-
-    @Override
-    public void startPressed() {
-        int chosenLevel = Integer.valueOf(viewMvc.retrieveLevelNrFromView());
-        WelcomeFragmentDirections.ActionWelcomeToLevel action = WelcomeFragmentDirections.actionWelcomeToLevel();
-        action.setLevelNr(chosenLevel);
-        NavHostFragment.findNavController(this).navigate(action);
-    }
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         outState.putInt(CHOOSEN_LEVEL, Integer.valueOf(viewMvc.retrieveLevelNrFromView()));
         super.onSaveInstanceState(outState);
     }
-}
+}*/
