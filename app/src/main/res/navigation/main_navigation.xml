@@ -12,7 +12,8 @@
         tools:layout="@layout/fragment_welcome">
         <action
             android:id="@+id/action_welcome_to_level"
-            app:destination="@id/levelDestination" />
+            app:destination="@id/levelDestination"
+            app:launchSingleTop="true" />
     </fragment>
     <fragment
         android:id="@+id/levelDestination"
@@ -22,14 +23,16 @@
         <action
             android:id="@+id/action_level_to_win"
             app:destination="@id/winDestination"
-            app:popUpTo="@id/welcomeDestination" />
+            app:popUpTo="@id/welcomeDestination"
+            app:launchSingleTop="true"/>
         <argument
             android:name="level_nr"
             android:defaultValue="1"
             app:argType="integer" />
         <action
             android:id="@+id/action_level_to_level"
-            app:destination="@id/levelDestination" />
+            app:destination="@id/levelDestination"
+            app:launchSingleTop="true"/>
     </fragment>
     <fragment
         android:id="@+id/winDestination"
@@ -39,6 +42,7 @@
         <action
             android:id="@+id/action_win_to_welcome"
             app:destination="@id/welcomeDestination"
-            app:popUpTo="@id/welcomeDestination" />
+            app:popUpTo="@id/welcomeDestination"
+            app:launchSingleTop="true"/>
     </fragment>
 </navigation>

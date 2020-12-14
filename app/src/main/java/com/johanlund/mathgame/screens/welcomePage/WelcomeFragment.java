@@ -59,9 +59,9 @@ public class WelcomeFragment extends Fragment {
         viewModel.isStartGamePressed().observe(getViewLifecycleOwner(), isPressed -> {
             if (isPressed) {
                 String chosenLevel = viewModel.getChosenLevel().getValue();
-                WelcomeFragmentDirections.ActionWelcomeToLevel action = WelcomeFragmentDirections.actionWelcomeToLevel();
-                action.setLevelNr(Integer.valueOf(chosenLevel));
-                NavHostFragment.findNavController(this).navigate(action);
+                WelcomeFragmentDirections.ActionWelcomeToLevel action = WelcomeFragmentDirections.actionWelcomeToLevel().setLevelNr(Integer.valueOf(chosenLevel));
+                //N.B. If code below is replaced with navigate(action) => orientation change => press start btn => crasch.
+                NavHostFragment.findNavController(this).navigate(action.getActionId());
             }
         });
         return binding.getRoot();
