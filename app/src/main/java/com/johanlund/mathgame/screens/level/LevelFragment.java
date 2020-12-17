@@ -2,7 +2,6 @@ package com.johanlund.mathgame.screens.level;
 
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +19,6 @@ import com.johanlund.mathgame.common.models.QuestionModel;
 import com.johanlund.mathgame.debug.BackStackLogger;
 import com.johanlund.mathgame.questionsProducer.DaggerQuestionsProducerFactory;
 import com.johanlund.mathgame.questionsProducer.QuestionsProducer;
-import com.johanlund.mathgame.questionsProducer.QuestionsProducerImpl;
 import com.johanlund.mathgame.screens.questionanswer.AnswerQuestionFragment;
 
 import java.util.ArrayList;
@@ -29,12 +27,12 @@ import java.util.Arrays;
 import static com.johanlund.mathgame.common.Constants.NR_OF_LEVEL;
 import static com.johanlund.mathgame.common.Constants.TOT_NR_OF_LEVELS;
 
-public class OneLevelFragment extends Fragment implements AnswerQuestionFragment.Listener {
+public class LevelFragment extends Fragment implements AnswerQuestionFragment.Listener {
     private final int QUESTIONS_PER_LEVEL = 8;
 
-    private OneLevelViewMvc viewMvc;
+    private LevelViewMvc viewMvc;
 
-    private OneLevelFragment that = this;
+    private LevelFragment that = this;
     /*ref to QuestionAdapter could also be placed in view, but feels more naturally here as this is
     the controller.*/
     private QuestionAdapter questionsAdapter;
@@ -63,7 +61,7 @@ public class OneLevelFragment extends Fragment implements AnswerQuestionFragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        viewMvc = new OneLevelViewMvcImpl(inflater, container);
+        viewMvc = new LevelViewMvcImpl(inflater, container);
 
         //ORIENTATION CHANGE
         if (savedInstanceState != null) {
@@ -88,7 +86,7 @@ public class OneLevelFragment extends Fragment implements AnswerQuestionFragment
         //FIRST INITIATION
         else {
             //Level nr (used for getting level and also for title)
-            currentLevel = OneLevelFragmentArgs.fromBundle(getArguments()).getLevelNr();
+            currentLevel = LevelFragmentArgs.fromBundle(getArguments()).getLevelNr();
             initiateLevelPartOne();
         }
         initiateLevelPartTwo();
@@ -178,7 +176,7 @@ public class OneLevelFragment extends Fragment implements AnswerQuestionFragment
 
     private void levelCompleted() {
         if (currentLevel == totNrOfLevels) {
-            int action = OneLevelFragmentDirections.actionLevelToWin().getActionId();
+            int action = LevelFragmentDirections.actionLevelToWin().getActionId();
             NavHostFragment.findNavController(this).navigate(action);
             return;
         }
@@ -202,7 +200,7 @@ public class OneLevelFragment extends Fragment implements AnswerQuestionFragment
         private void startDialog(Fragment fragment, int title, int msg) {
             AlertDialog.Builder builder = new AlertDialog.Builder(fragment.getContext());
             builder.setPositiveButton(R.string.ok, (dialog, id) -> {
-                        OneLevelFragmentDirections.ActionLevelToLevel action = OneLevelFragmentDirections.actionLevelToLevel();
+                        LevelFragmentDirections.ActionLevelToLevel action = LevelFragmentDirections.actionLevelToLevel();
                         action.setLevelNr(currentLevel);
                         NavHostFragment.findNavController(fragment).navigate(action);
                     }

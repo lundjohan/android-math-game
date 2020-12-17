@@ -2,7 +2,7 @@ package com.johanlund.mathgame.screens.level;
 
 import com.johanlund.mathgame.common.ViewMvc;
 
-public interface OneLevelViewMvc extends ViewMvc {
+public interface LevelViewMvc extends ViewMvc {
     void createViewPager2(QuestionAdapter qa);
 
     void bindLevelTitleToView(String str);

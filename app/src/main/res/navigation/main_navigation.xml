@@ -17,8 +17,8 @@
     </fragment>
     <fragment
         android:id="@+id/levelDestination"
-        android:name="com.johanlund.mathgame.screens.level.OneLevelFragment"
-        android:label="OneLevelFragment"
+        android:name="com.johanlund.mathgame.screens.level.LevelFragment"
+        android:label="LevelFragment"
         tools:layout="@layout/fragment_one_level">
         <action
             android:id="@+id/action_level_to_win"

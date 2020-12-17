@@ -9,14 +9,14 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.johanlund.mathgame.R;
 
-public class OneLevelViewMvcImpl implements OneLevelViewMvc {
+public class LevelViewMvcImpl implements LevelViewMvc {
     View view;
     ViewPager2 viewPager;
     TextView levelTitleView;
     TextView scoreView;
     TextView timeLeftView;
 
-    public OneLevelViewMvcImpl(LayoutInflater inflater, ViewGroup container) {
+    public LevelViewMvcImpl(LayoutInflater inflater, ViewGroup container) {
         view = inflater.inflate(R.layout.fragment_one_level, container, false);
         scoreView = view.findViewById(R.id.score);
         levelTitleView = view.findViewById(R.id.levelTitle);
