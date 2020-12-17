@@ -2,12 +2,14 @@ package com.johanlund.mathgame.screens.level;
 
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
@@ -15,6 +17,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.johanlund.mathgame.R;
 import com.johanlund.mathgame.common.models.Level;
 import com.johanlund.mathgame.common.models.QuestionModel;
+import com.johanlund.mathgame.debug.BackStackLogger;
 import com.johanlund.mathgame.questionsProducer.DaggerQuestionsProducerFactory;
 import com.johanlund.mathgame.questionsProducer.QuestionsProducer;
 import com.johanlund.mathgame.questionsProducer.QuestionsProducerImpl;
@@ -31,6 +34,7 @@ public class OneLevelFragment extends Fragment implements AnswerQuestionFragment
 
     private OneLevelViewMvc viewMvc;
 
+    private OneLevelFragment that = this;
     /*ref to QuestionAdapter could also be placed in view, but feels more naturally here as this is
     the controller.*/
     private QuestionAdapter questionsAdapter;
@@ -49,6 +53,12 @@ public class OneLevelFragment extends Fragment implements AnswerQuestionFragment
     private final String MILLIS_BEFORE_TIMES_UP = "millisTimesUp";
     private final String REMAINING_QUESTIONS = "remainingQuestions";
     private final String TAG = this.getClass().getName();
+    @Override
+    public void onCreate(Bundle savedInstanceState){
+        that = this;
+        super.onCreate(savedInstanceState);
+
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -82,13 +92,8 @@ public class OneLevelFragment extends Fragment implements AnswerQuestionFragment
             initiateLevelPartOne();
         }
         initiateLevelPartTwo();
+        new BackStackLogger(this.getClass().getName(),getParentFragmentManager()).log();
         return viewMvc.getRootView();
-    }
-
-
-    private void initiateLevel() {
-        initiateLevelPartOne();
-        initiateLevelPartTwo();
     }
 
     private void initiateLevelPartOne() {
@@ -153,6 +158,22 @@ public class OneLevelFragment extends Fragment implements AnswerQuestionFragment
             countDownTimer.cancel();
             levelCompleted();
         }
+    }
+
+    @Override
+    public OnBackPressedCallback handleBackPress() {
+        return new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                /*After many trials - navigateUp is the call that takes us back in backstack.
+                * using getFragmentManager(...).remove outside of Navigation class doesn't work.
+                *   => java.lang.IllegalStateException: Cannot remove Fragment attached to a different FragmentManager.
+                *   => therefore, we here use only android.navigation calls.
+                *  */
+                NavHostFragment.findNavController(that).navigateUp();
+                new BackStackLogger(this.getClass().getName(),getParentFragmentManager()).log();
+            }
+        };
     }
 
     private void levelCompleted() {

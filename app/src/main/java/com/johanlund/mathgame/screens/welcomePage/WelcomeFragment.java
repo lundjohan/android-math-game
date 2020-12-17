@@ -15,6 +15,7 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.johanlund.mathgame.R;
 import com.johanlund.mathgame.databinding.FragmentWelcomeBinding;
+import com.johanlund.mathgame.debug.BackStackLogger;
 
 public class WelcomeFragment extends Fragment {
     private WelcomeViewModel viewModel;
@@ -60,32 +61,15 @@ public class WelcomeFragment extends Fragment {
             if (isPressed) {
                 String chosenLevel = viewModel.getChosenLevel().getValue();
                 WelcomeFragmentDirections.ActionWelcomeToLevel action = WelcomeFragmentDirections.actionWelcomeToLevel().setLevelNr(Integer.valueOf(chosenLevel));
-                //N.B. If code below is replaced with navigate(action) => orientation change => press start btn => crasch.
-                NavHostFragment.findNavController(this).navigate(action.getActionId());
+
+                //If it is set to ...navigate(actionid) => levelNr will not be conserved to next destination.
+                NavHostFragment.findNavController(this).navigate(action);
+
+                /*This is needed in case you move back to this fragment, otherwise you will immidiately go to next fragment again*/
+                viewModel.onStartLevelComplete();
             }
         });
+        new BackStackLogger(this.getClass().getName(),getParentFragmentManager()).log();
         return binding.getRoot();
     }
 }
-
-/*
-        if (savedInstanceState != null) {
-            int chosenLevel = savedInstanceState.getInt(CHOOSEN_LEVEL);
-            viewMvc.getLevelChooser().setProgress(chosenLevel);
-        } else {
-            // SeekBar::setProgress(0) seems to be disregarded (however setProgress(1) isn't),
-            // I guess setOnSeekBarListener only operate on CHANGE.
-            // we set views explicit instead
-            if (infoAboutLevels.length > 0) {
-                viewMvc.setLevelNrView(String.valueOf(1));
-                viewMvc.setDifficultyView(infoAboutLevels[0].getDifficulty());
-                viewMvc.setDescriptionView(infoAboutLevels[0].getDescription());
-            }
-        }
-
-    @Override
-    public void onSaveInstanceState(@NonNull Bundle outState) {
-        outState.putInt(CHOOSEN_LEVEL, Integer.valueOf(viewMvc.retrieveLevelNrFromView()));
-        super.onSaveInstanceState(outState);
-    }
-}*/

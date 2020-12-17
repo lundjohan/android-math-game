@@ -51,6 +51,8 @@ public class WelcomeViewModel extends ViewModel {
         isStartPressed.setValue(true);
     }
 
+    public void onStartLevelComplete(){isStartPressed.setValue(false);}
+
 
 
 

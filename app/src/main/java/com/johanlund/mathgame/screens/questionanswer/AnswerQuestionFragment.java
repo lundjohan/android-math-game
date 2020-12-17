@@ -1,14 +1,17 @@
 package com.johanlund.mathgame.screens.questionanswer;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.johanlund.mathgame.common.models.QuestionModel;
+import com.johanlund.mathgame.debug.BackStackLogger;
 
 import static com.johanlund.mathgame.common.Constants.QUESTION_MODEL;
 
@@ -26,6 +29,10 @@ public class AnswerQuestionFragment extends Fragment implements AnswerQuestionVi
         super.onCreate(savedInstanceState);
         callback = (Listener) getParentFragment();
 
+        /* Without this line we go back to former AnswerQuestionFragment inside ViewPager on backpress.
+        * Here we make the Fragment Parent of AnswerQuestionFragment handle the back press.*/
+        requireActivity().getOnBackPressedDispatcher().addCallback(this, callback.handleBackPress());
+
     }
 
     @Override
@@ -36,6 +43,12 @@ public class AnswerQuestionFragment extends Fragment implements AnswerQuestionVi
         QuestionModel qm = (QuestionModel) args.getParcelable(QUESTION_MODEL);
         viewMvc = new AnswerQuestionViewMvcImpl(inflater, container);
         viewMvc.bindQuestionToView(qm);
+
+        /**
+         * This always log backstack count == 0.
+         * This class resides inside a ViewPager2, which apparently doesn't use a backstack.
+         */
+        new BackStackLogger(this.getClass().getName(),getParentFragmentManager()).log();
         return viewMvc.getRootView();
     }
 
@@ -86,5 +99,6 @@ public class AnswerQuestionFragment extends Fragment implements AnswerQuestionVi
 
     public interface Listener {
         void answerIsCorrect(String id);
+        OnBackPressedCallback handleBackPress();
     }
 }

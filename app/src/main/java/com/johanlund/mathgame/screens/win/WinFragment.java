@@ -12,6 +12,7 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.johanlund.mathgame.R;
 import com.johanlund.mathgame.databinding.FragmentWinBinding;
+import com.johanlund.mathgame.debug.BackStackLogger;
 
 public class WinFragment extends Fragment {
     private WinViewModel viewModel;
@@ -36,6 +37,7 @@ public class WinFragment extends Fragment {
                 NavHostFragment.findNavController(this).navigate(action);
             }
         });
+        new BackStackLogger(this.getClass().getName(),getParentFragmentManager()).log();
         return binding.getRoot();
     }
 }
