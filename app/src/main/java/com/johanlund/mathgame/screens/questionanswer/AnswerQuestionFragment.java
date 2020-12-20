@@ -31,7 +31,7 @@ public class AnswerQuestionFragment extends Fragment implements AnswerQuestionVi
 
         /* Without this line we go back to former AnswerQuestionFragment inside ViewPager on backpress.
         * Here we make the Fragment Parent of AnswerQuestionFragment handle the back press.*/
-        requireActivity().getOnBackPressedDispatcher().addCallback(this, callback.handleBackPress());
+        //requireActivity().getOnBackPressedDispatcher().addCallback(this, callback.handleBackPress());
 
     }
 
@@ -99,6 +99,6 @@ public class AnswerQuestionFragment extends Fragment implements AnswerQuestionVi
 
     public interface Listener {
         void answerIsCorrect(String id);
-        OnBackPressedCallback handleBackPress();
+       // OnBackPressedCallback handleBackPress();
     }
 }

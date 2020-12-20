@@ -19,7 +19,7 @@
         android:id="@+id/levelDestination"
         android:name="com.johanlund.mathgame.screens.level.LevelFragment"
         android:label="LevelFragment"
-        tools:layout="@layout/fragment_one_level">
+        tools:layout="@layout/fragment_level">
         <action
             android:id="@+id/action_level_to_win"
             app:destination="@id/winDestination"
@@ -29,10 +29,6 @@
             android:name="level_nr"
             android:defaultValue="1"
             app:argType="integer" />
-        <action
-            android:id="@+id/action_level_to_level"
-            app:destination="@id/levelDestination"
-            app:popUpTo="@id/welcomeDestination"/>
     </fragment>
     <fragment
         android:id="@+id/winDestination"
