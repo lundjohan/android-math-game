@@ -1,5 +1,8 @@
 # android-math-game
-Johans Math G
+Johans Math Game
+
+# Johan's Math Game
+View it on Google Play!
 
 ## Description
 Answer questions (e.g. 4+7) to move up a level.
@@ -15,4 +18,3 @@ Answer questions (e.g. 4+7) to move up a level.
 	  WelcomeFragment => LevelFragment (contains ViewPager2 wich contains AnswerQuestionsFragments) => WinFragment.
 	  
 	  Back press always leads back to WelcomeFragment. This is intended. 
-
