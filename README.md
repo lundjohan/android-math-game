@@ -2,7 +2,7 @@
 Johans Math Game
 
 # Johan's Math Game
-View it on Google Play!
+View it on Google Play: https://play.google.com/store/apps/details?id=com.johanlund.mathgame
 
 ## Description
 Answer questions (e.g. 4+7) to move up a level.
