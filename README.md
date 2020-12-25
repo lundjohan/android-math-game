@@ -11,7 +11,7 @@ Answer questions (e.g. 4+7) to move up a level.
 * Dagger2 
 * Jetpack (androidx): 
   * MVVM, 
-  * Binding, 
+  * Data Binding, 
   * Navigation. 
 	Navigation in app works like this: 
 	
