@@ -6,7 +6,7 @@
     <data>
         <variable
             name="answerQuestionViewModel"
-            type="com.johanlund.mathgame.screens.questionanswer.AnswerQuestionViewModel" />
+            type="com.johanlund.mathgame.screens.answerquestion.AnswerQuestionViewModel" />
     </data>
 
 <androidx.constraintlayout.widget.ConstraintLayout

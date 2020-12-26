@@ -1,4 +1,4 @@
-package com.johanlund.mathgame.screens.questionanswer;
+package com.johanlund.mathgame.screens.answerquestion;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;

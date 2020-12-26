@@ -1,4 +1,4 @@
-package com.johanlund.mathgame.screens.questionanswer;
+package com.johanlund.mathgame.screens.answerquestion;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

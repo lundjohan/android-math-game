@@ -17,7 +17,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.johanlund.mathgame.R;
 import com.johanlund.mathgame.databinding.FragmentLevelBinding;
 import com.johanlund.mathgame.debug.BackStackLogger;
-import com.johanlund.mathgame.screens.questionanswer.AnswerQuestionFragment;
+import com.johanlund.mathgame.screens.answerquestion.AnswerQuestionFragment;
 
 public class LevelFragment extends Fragment implements AnswerQuestionFragment.Listener {
     private LevelViewModel viewModel;
