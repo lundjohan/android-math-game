@@ -4,5 +4,5 @@ import dagger.Component;
 
 @Component(modules = QuestionsProducerModule.class)
 public interface QuestionsProducerFactory {
-    QuestionsProducerImpl questionsProducer();
+    QuestionsProducer questionsProducer();
 }
