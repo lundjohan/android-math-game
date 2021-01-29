@@ -1,6 +1,3 @@
-# android-math-game
-Johans Math Game
-
 # Johan's Math Game
 View it on Google Play: https://play.google.com/store/apps/details?id=com.johanlund.mathgame
 
