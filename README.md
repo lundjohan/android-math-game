@@ -8,7 +8,7 @@ View it on Google Play: https://play.google.com/store/apps/details?id=com.johanl
 Answer questions (e.g. 4+7) to move up a level.
 
 ## Techniques used
-* Dagger2 
+* Dagger2 (including testing with Dagger2)
 * Jetpack (androidx): 
   * MVVM, 
   * Data Binding, 
