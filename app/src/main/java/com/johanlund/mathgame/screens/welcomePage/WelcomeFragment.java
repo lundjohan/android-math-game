@@ -13,9 +13,12 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 
+import com.johanlund.mathgame.App;
 import com.johanlund.mathgame.R;
 import com.johanlund.mathgame.databinding.FragmentWelcomeBinding;
 import com.johanlund.mathgame.debug.BackStackLogger;
+import com.johanlund.mathgame.screens.level.LevelViewModel;
+import com.johanlund.mathgame.screens.level.LevelViewModelFactory;
 
 public class WelcomeFragment extends Fragment {
     private WelcomeViewModel viewModel;
@@ -27,7 +30,8 @@ public class WelcomeFragment extends Fragment {
                 inflater, R.layout.fragment_welcome, container, false);
 
         // Get the viewmodel
-        viewModel = new ViewModelProvider(this).get(WelcomeViewModel.class);
+        WelcomeViewModelFactory welcomeViewModelFactory = new WelcomeViewModelFactory(((App)getActivity().getApplication()).getQuestionProducer().getLevelInfos());
+        viewModel = new ViewModelProvider(this, welcomeViewModelFactory).get(WelcomeViewModel.class);
 
         //two lines necessary for binding to work
         binding.setWelcomeViewModel(viewModel);

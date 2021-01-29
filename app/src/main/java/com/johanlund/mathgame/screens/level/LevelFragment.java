@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.johanlund.mathgame.App;
 import com.johanlund.mathgame.R;
 import com.johanlund.mathgame.databinding.FragmentLevelBinding;
 import com.johanlund.mathgame.debug.BackStackLogger;
@@ -35,7 +36,7 @@ public class LevelFragment extends Fragment implements AnswerQuestionFragment.Li
         int chosenLevel = LevelFragmentArgs.fromBundle(getArguments()).getLevelNr();
 
         // Get the viewmodel (NB, that this doesnt necessarily mean creating new ViewModel)
-        LevelViewModelFactory viewModelfactory = new LevelViewModelFactory(chosenLevel);
+        LevelViewModelFactory viewModelfactory = new LevelViewModelFactory(((App)getActivity().getApplication()).getQuestionProducer(), chosenLevel);
         viewModel = new ViewModelProvider(this, viewModelfactory).get(LevelViewModel.class);
 
         //two lines necessary for binding to work

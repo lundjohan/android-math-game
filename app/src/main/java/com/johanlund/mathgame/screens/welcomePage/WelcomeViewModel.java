@@ -5,14 +5,13 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.johanlund.mathgame.common.models.LevelInfo;
-import com.johanlund.mathgame.questionsProducer.DaggerQuestionsProducerFactory;
+import com.johanlund.mathgame.questionsProducer.DaggerQuestionsProducerComponent;
 import com.johanlund.mathgame.questionsProducer.QuestionsProducer;
 
 public class WelcomeViewModel extends ViewModel {
     private LevelInfo[] infoAboutLevels;
-    public WelcomeViewModel(){
-        QuestionsProducer qp = DaggerQuestionsProducerFactory.create().questionsProducer();
-        infoAboutLevels = qp.getLevelInfos();
+    public WelcomeViewModel(LevelInfo[] infos){
+        infoAboutLevels = infos;
     }
 
 

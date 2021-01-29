@@ -16,10 +16,6 @@ public class Level implements Parcelable {
         this.timeInSecPerQuestion = timeInSecPerQuestion;
     }
 
-    public Level(String[] questions, int timeInSec) {
-
-    }
-
     protected Level(Parcel in) {
         questions = in.createTypedArray(QuestionModel.CREATOR);
         timeInSecPerQuestion = in.readInt();

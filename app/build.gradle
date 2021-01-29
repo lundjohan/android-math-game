@@ -23,7 +23,11 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        //if your minSdkVersion is 21 or higher, you do not need the multidex support library.
+        multiDexEnabled true
+
+        //testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.johanlund.mathgame.MyCustomTestRunner"
         signingConfig signingConfigs.debug
     }
     //Allow Android Binding
@@ -54,10 +58,13 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
     //testing
+    def dagger_version = "2.29"
     testImplementation 'junit:junit:4.12'
     testImplementation group: 'org.hamcrest', name: 'java-hamcrest', version: '2.0.0.0'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    androidTestImplementation "com.google.dagger:dagger-compiler:$dagger_version"
+    androidTestAnnotationProcessor "com.google.dagger:dagger-compiler:$dagger_version"
 
     //json
     implementation 'com.google.code.gson:gson:2.8.0'

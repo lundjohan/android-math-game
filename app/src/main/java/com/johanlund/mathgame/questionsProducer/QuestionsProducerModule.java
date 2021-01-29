@@ -6,5 +6,5 @@ import dagger.Module;
 @Module
 public abstract class QuestionsProducerModule {
     @Binds
-    public abstract QuestionsProducer questionProducerImpl(QuestionsProducerImpl impl);
+    public abstract QuestionsProducer questionProducer(QuestionsProducerImpl impl);
 }

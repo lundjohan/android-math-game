@@ -6,9 +6,10 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.johanlund.mathgame.App;
 import com.johanlund.mathgame.common.models.Level;
 import com.johanlund.mathgame.common.models.QuestionModel;
-import com.johanlund.mathgame.questionsProducer.DaggerQuestionsProducerFactory;
+import com.johanlund.mathgame.questionsProducer.DaggerQuestionsProducerComponent;
 import com.johanlund.mathgame.questionsProducer.QuestionsProducer;
 
 import java.util.ArrayList;
@@ -21,8 +22,10 @@ public class LevelViewModel extends ViewModel {
     private int currentScore = 0;
     private Level level;
     private CountDownTimer timer;
+    private QuestionsProducer qp;
 
-    public LevelViewModel(int chosenLevel) {
+    public LevelViewModel(QuestionsProducer qp, int chosenLevel) {
+        this.qp = qp;
         this.currentLevel.setValue(chosenLevel);
         initiateNewLevel();
     }
@@ -30,7 +33,6 @@ public class LevelViewModel extends ViewModel {
     //called on startup and also on level change
     void initiateNewLevel() {
         //retrieve a level
-        QuestionsProducer qp = DaggerQuestionsProducerFactory.create().questionsProducer();
         level = qp.getLevel(currentLevel.getValue(), QUESTIONS_PER_LEVEL);
         TOT_NR_OF_LEVELS = qp.getTotalNrOfLevels();
 

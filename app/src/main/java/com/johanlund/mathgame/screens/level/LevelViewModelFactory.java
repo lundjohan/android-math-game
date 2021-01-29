@@ -4,10 +4,13 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
-public class LevelViewModelFactory implements ViewModelProvider.Factory {
-    int levelNr;
+import com.johanlund.mathgame.questionsProducer.QuestionsProducer;
 
-    LevelViewModelFactory(int levelNr) {
+public class LevelViewModelFactory implements ViewModelProvider.Factory {
+    private int levelNr;
+    private QuestionsProducer qp;
+    LevelViewModelFactory(QuestionsProducer questionProducer, int levelNr) {
+        this.qp = questionProducer;
         this.levelNr = levelNr;
     }
 
@@ -15,7 +18,7 @@ public class LevelViewModelFactory implements ViewModelProvider.Factory {
     @Override
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
         if (modelClass.isAssignableFrom(LevelViewModel.class)) {
-            return (T) new LevelViewModel(levelNr);
+            return (T) new LevelViewModel(qp,levelNr);
         }
         throw new IllegalArgumentException("Unknown ViewModel class");
     }
